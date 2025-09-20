@@ -1,0 +1,10 @@
+{
+  "placeholderImages": [
+    {
+      "id": "pitch-thumbnail-bg",
+      "description": "Abstract background for startup pitch thumbnail",
+      "imageUrl": "https://picsum.photos/seed/pitchcraft/600/400",
+      "imageHint": "abstract dark"
+    }
+  ]
+}
