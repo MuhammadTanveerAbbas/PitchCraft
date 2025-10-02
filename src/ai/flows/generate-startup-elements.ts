@@ -1,14 +1,10 @@
 'use server';
 
-/**
- * @fileOverview A startup element generator AI agent.
- *
- * - generateStartupElements - A function that handles the startup element generation process.
- * - GenerateStartupElementsInput - The input type for the generateStartupElements function.
- * - GenerateStartupElementsOutput - The return type for the generateStartupElements function.
- */
-
-import {ai} from '@/ai/genkit';
+import { generateKeyFeaturesFlow } from './generate-key-features';
+import { generateTargetAudienceFlow } from './generate-target-audience';
+import { generateMonetizationStrategyFlow } from './generate-monetization-strategy';
+import { generateMvpRoadmapFlow } from './generate-mvp-roadmap';
+import { generatePitchDeckOutlineFlow } from './generate-pitch-deck-outline';
 import {z} from 'genkit';
 
 const GenerateStartupElementsInputSchema = z.object({
@@ -44,48 +40,19 @@ const GenerateStartupElementsOutputSchema = z.object({
 export type GenerateStartupElementsOutput = z.infer<typeof GenerateStartupElementsOutputSchema>;
 
 export async function generateStartupElements(input: GenerateStartupElementsInput): Promise<GenerateStartupElementsOutput> {
-  return generateStartupElementsFlow(input);
+    const [keyFeatures, targetAudience, monetizationStrategy, mvpRoadmap, pitchDeckOutline] = await Promise.all([
+        generateKeyFeaturesFlow(input),
+        generateTargetAudienceFlow(input),
+        generateMonetizationStrategyFlow(input),
+        generateMvpRoadmapFlow(input),
+        generatePitchDeckOutlineFlow(input),
+    ]);
+
+    return {
+        ...keyFeatures,
+        ...targetAudience,
+        ...monetizationStrategy,
+        ...mvpRoadmap,
+        ...pitchDeckOutline,
+    };
 }
-
-const prompt = ai.definePrompt({
-  name: 'generateStartupElementsPrompt',
-  input: {schema: GenerateStartupElementsInputSchema},
-  output: {schema: GenerateStartupElementsOutputSchema},
-  prompt: `You are a seasoned technology and marketing expert, known for your brutally honest and deeply insightful predictions. You see market trends and user behavior patterns that others miss. Your job is to provide a no BS, direct, and actionable plan for a new SaaS MVP.
-
-**Core Problem:** {{{coreProblem}}}
-**Target MVP Timeline:** {{{targetTimeline}}} months
-**Estimated MVP Budget:** {{{budget}}}
-**Team Size:** {{{teamSize}}} people
-{{#if industry}}
-**Industry:** {{{industry}}}
-{{/if}}
-
-Generate the startup elements based on a deep, expert analysis. Be critical. Be predictive. Tell me what I need to hear, not what I want to hear. The MVP features and roadmap must be realistic for the given budget, timeline, and team size.
-
-RULES:
-- Do not use hyphens or em dashes. Use commas and clear language.
-- All outputs must be direct, concise, and professional. No buzzwords, no fluff, no sugarcoating.
-- Think about second and third order consequences. Predict market reaction and potential pitfalls.
-- The key features and MVP roadmap MUST be realistically achievable within the specified budget and timeline.
-
-Your output must be a JSON object with the following structure:
-- **keyFeatures**: Three hyper focused MVP features. What is the absolute minimum to prove the concept and create a painkiller solution, not a vitamin. Justify each feature's inclusion based on the budget.
-- **targetAudience**: Three specific, addressable customer segments. Who will pay for this on day one? Why? What is their deep psychological need for this product?
-- **monetizationStrategy**: A single, robust monetization model. How will this make money? Justify your choice with market data or behavioral economics principles. Explain why other models are wrong.
-- **mvpRoadmap**: A 5 step, actionable MVP roadmap. These are concrete engineering and marketing tasks that fit within the budget, timeline, and team size. Not high level goals.
-- **pitchDeckOutline**: An 8 slide pitch deck outline. Each slide's content should be a punchy, data backed statement. No filler. This is for a pre-seed/seed stage investor.
-`,
-});
-
-const generateStartupElementsFlow = ai.defineFlow(
-  {
-    name: 'generateStartupElementsFlow',
-    inputSchema: GenerateStartupElementsInputSchema,
-    outputSchema: GenerateStartupElementsOutputSchema,
-  },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
-  }
-);

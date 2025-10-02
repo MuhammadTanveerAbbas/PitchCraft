@@ -48,26 +48,23 @@ export const industries = {
   Technology: {
     icon: Cpu,
     items: [
-      'General Tech',
-      'Developer Tools',
-      'AI / Machine Learning',
-      'Cybersecurity',
-      'Cloud Computing',
+      'Tech',
+      'Developer',
+      'AI',
+      'Security',
+      'Cloud',
       'SaaS',
-      'Web3 / Blockchain',
     ],
   },
   'Business & Finance': {
     icon: Briefcase,
     items: [
       'FinTech',
-      'E-commerce',
-      'Real Estate',
-      'Logistics & Supply Chain',
-      'Marketing & AdTech',
-      'HR & Recruitment',
-      'Legal Tech',
-      'PropTech',
+      'Ecommerce',
+      'RealEstate',
+      'Logistics',
+      'Marketing',
+      'Legal',
     ],
   },
   'Creative & Media': {
@@ -75,11 +72,10 @@ export const industries = {
     items: [
       'Entertainment',
       'Gaming',
-      'Social Media',
-      'Fashion & Apparel',
-      'Art & Design',
-      'Music Tech',
-      'Creator Economy',
+      'Social',
+      'Fashion',
+      'Design',
+      'Music',
     ],
   },
   'Lifestyle & Health': {
@@ -88,11 +84,9 @@ export const industries = {
       'Healthcare',
       'Education',
       'Sustainability',
-      'Travel & Hospitality',
-      'Food & Beverage',
-      'Fitness & Wellness',
-      'AgriTech',
-      'Mental Health',
+      'Travel',
+      'Food',
+      'Fitness',
     ],
   },
 };
@@ -191,7 +185,7 @@ export function PitchForm({ onGenerate, onSurpriseMe, isLoading }: PitchFormProp
                       <Icon className="h-5 w-5" />
                       {category}
                     </h3>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="grid grid-cols-3 lg:grid-cols-6 gap-2">
                       {items.map(industry => (
                         <Button
                           key={industry}
@@ -199,7 +193,7 @@ export function PitchForm({ onGenerate, onSurpriseMe, isLoading }: PitchFormProp
                           variant={field.value === industry ? 'default' : 'outline'}
                           size="sm"
                           onClick={() => field.onChange(industry)}
-                          className="font-normal"
+                          className="font-normal text-xs lg:px-2 lg:py-1 lg:text-xs lg:h-8"
                         >
                           {industry}
                         </Button>
