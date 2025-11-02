@@ -23,7 +23,7 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Navigation */}
-      <nav className="glass-effect sticky top-0 z-50">
+      <nav className="glass-effect">
         <div className="h-16 flex items-center justify-between px-4">
           <Link
             href="/"
@@ -61,23 +61,23 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
       </nav>
 
       {/* Hero Section */}
-      <section className="container mx-auto pt-12 pb-8 md:py-20 animate-fade-in mb-8 md:mb-16">
+      <section className="container mx-auto pt-16 pb-12 md:py-20 animate-fade-in mb-8 md:mb-16">
         <div className="max-w-6xl mx-auto text-center px-4">
           <div className="inline-flex items-center gap-1.5 md:gap-2 bg-accent px-2.5 py-1 md:px-4 md:py-2 rounded-full mb-4 md:mb-8">
             <Zap
               className="h-3 w-3 md:h-4 md:w-4 text-cyan-400"
               style={{ filter: "drop-shadow(0 0 4px #06b6d4)" }}
             />
-            <span className="text-[10px] md:text-sm font-medium text-white">
+            <span className="text-[9px] md:text-sm font-medium text-white">
               Transform Ideas Into Investment Ready Pitches
             </span>
           </div>
-          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-3 md:mb-6 leading-tight">
+          <h1 className="font-display font-bold text-xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-3 md:mb-6 leading-tight">
             Turn Ideas Into
             <span className="block gradient-text">Investor Ready</span>
             <span className="block text-white">Pitches</span>
           </h1>
-          <p className="text-sm md:text-lg lg:text-xl text-gray-300 mb-5 md:mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xs md:text-lg lg:text-xl text-gray-300 mb-5 md:mb-10 max-w-3xl mx-auto leading-relaxed">
             Generate professional startup pitches in{" "}
             <span className="text-white font-semibold">under 60 seconds</span>.
             Get structured content, market analysis, and strategic insights.
