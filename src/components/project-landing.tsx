@@ -68,16 +68,16 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
               className="h-3 w-3 md:h-4 md:w-4 text-cyan-400"
               style={{ filter: "drop-shadow(0 0 4px #06b6d4)" }}
             />
-            <span className="text-[9px] md:text-sm font-medium text-white">
-              Transform Ideas Into Investment Ready Pitches
+            <span className="text-xs md:text-sm font-medium text-white">
+              Transform Ideas Into Best Pitches
             </span>
           </div>
-          <h1 className="font-display font-bold text-xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-3 md:mb-6 leading-tight">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-3 md:mb-6 leading-tight">
             Turn Ideas Into
             <span className="block gradient-text">Investor Ready</span>
             <span className="block text-white">Pitches</span>
           </h1>
-          <p className="text-xs md:text-lg lg:text-xl text-gray-300 mb-5 md:mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-lg lg:text-xl text-gray-300 mb-5 md:mb-10 max-w-3xl mx-auto leading-relaxed">
             Generate professional startup pitches in{" "}
             <span className="text-white font-semibold">under 60 seconds</span>.
             Get structured content, market analysis, and strategic insights.
@@ -483,7 +483,9 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
               <h2 className="font-display text-3xl md:text-4xl font-bold mb-3 text-white">
                 Frequently Asked Questions
               </h2>
-              <p className="text-base text-gray-400">Everything you need to know</p>
+              <p className="text-base text-gray-400">
+                Everything you need to know
+              </p>
             </div>
             <div className="space-y-4">
               <Card className="bg-gradient-to-br from-cyan-500/5 to-transparent border border-white/10 p-6 hover:border-cyan-500/30 transition-all duration-300 group">
@@ -496,7 +498,8 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
                       Do I need to sign up to use PitchCraft?
                     </h3>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      No! You can generate pitches immediately without any signup. Just visit the tool and start creating.
+                      No! You can generate pitches immediately without any
+                      signup. Just visit the tool and start creating.
                     </p>
                   </div>
                 </div>
@@ -511,7 +514,9 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
                       How accurate are the generated pitches?
                     </h3>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      Our tool uses industry data and best practices to generate realistic pitches. However, you should review and customize the output to match your specific vision.
+                      Our tool uses industry data and best practices to generate
+                      realistic pitches. However, you should review and
+                      customize the output to match your specific vision.
                     </p>
                   </div>
                 </div>
@@ -526,7 +531,9 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
                       Can I edit the generated pitch?
                     </h3>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      Yes! Export to Markdown and edit in any text editor. The generated pitch is a starting point that you can refine and personalize.
+                      Yes! Export to Markdown and edit in any text editor. The
+                      generated pitch is a starting point that you can refine
+                      and personalize.
                     </p>
                   </div>
                 </div>
@@ -541,7 +548,9 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
                       What industries does PitchCraft support?
                     </h3>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      We support 24+ industries including SaaS, E-commerce, FinTech, HealthTech, EdTech, AI/ML, and more. Each industry gets tailored insights.
+                      We support 24+ industries including SaaS, E-commerce,
+                      FinTech, HealthTech, EdTech, AI/ML, and more. Each
+                      industry gets tailored insights.
                     </p>
                   </div>
                 </div>
@@ -556,7 +565,9 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
                       Is my startup idea kept confidential?
                     </h3>
                     <p className="text-gray-300 text-sm leading-relaxed">
-                      Yes. We don't store your ideas or personal information. All processing happens in real-time and nothing is saved to our servers.
+                      Yes. We don't store your ideas or personal information.
+                      All processing happens in real-time and nothing is saved
+                      to our servers.
                     </p>
                   </div>
                 </div>
