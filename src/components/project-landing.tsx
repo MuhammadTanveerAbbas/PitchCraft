@@ -23,7 +23,7 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
   return (
     <main className="min-h-screen bg-black text-white">
       {/* Navigation */}
-      <nav className="glass-effect">
+      <nav className="glass-effect sticky top-0 z-50">
         <div className="h-16 flex items-center justify-between px-4">
           <Link
             href="/"
@@ -68,16 +68,16 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
               className="h-3 w-3 md:h-4 md:w-4 text-cyan-400"
               style={{ filter: "drop-shadow(0 0 4px #06b6d4)" }}
             />
-            <span className="text-xs md:text-sm font-medium text-white">
+            <span className="text-sm md:text-sm font-medium text-white">
               Transform Ideas Into Best Pitches
             </span>
           </div>
-          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-3 md:mb-6 leading-tight">
+          <h1 className="font-display font-bold text-3xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-3 md:mb-6 leading-tight">
             Turn Ideas Into
             <span className="block gradient-text">Investor Ready</span>
             <span className="block text-white">Pitches</span>
           </h1>
-          <p className="text-sm md:text-lg lg:text-xl text-gray-300 mb-5 md:mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl text-gray-300 mb-5 md:mb-10 max-w-3xl mx-auto leading-relaxed">
             Generate professional startup pitches in{" "}
             <span className="text-white font-semibold">under 60 seconds</span>.
             Get structured content, market analysis, and strategic insights.
