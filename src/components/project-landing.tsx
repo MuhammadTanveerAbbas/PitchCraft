@@ -61,14 +61,14 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
       </nav>
 
       {/* Hero Section */}
-      <section className="container mx-auto py-8 md:py-20 animate-fade-in mb-8 md:mb-16">
+      <section className="container mx-auto pt-12 pb-8 md:py-20 animate-fade-in mb-8 md:mb-16">
         <div className="max-w-6xl mx-auto text-center px-4">
           <div className="inline-flex items-center gap-1.5 md:gap-2 bg-accent px-2.5 py-1 md:px-4 md:py-2 rounded-full mb-4 md:mb-8">
             <Zap
               className="h-3 w-3 md:h-4 md:w-4 text-cyan-400"
               style={{ filter: "drop-shadow(0 0 4px #06b6d4)" }}
             />
-            <span className="text-xs md:text-sm font-medium text-white">
+            <span className="text-[10px] md:text-sm font-medium text-white">
               Transform Ideas Into Investment Ready Pitches
             </span>
           </div>
