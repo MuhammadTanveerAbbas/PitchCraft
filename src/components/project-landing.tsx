@@ -61,9 +61,9 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
       </nav>
 
       {/* Hero Section */}
-      <section className="container mx-auto py-16 md:py-20 animate-fade-in mb-16">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-accent px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-6 md:mb-8">
+      <section className="container mx-auto py-8 md:py-20 animate-fade-in mb-8 md:mb-16">
+        <div className="max-w-6xl mx-auto text-center px-4">
+          <div className="inline-flex items-center gap-1.5 md:gap-2 bg-accent px-2.5 py-1 md:px-4 md:py-2 rounded-full mb-4 md:mb-8">
             <Zap
               className="h-3 w-3 md:h-4 md:w-4 text-cyan-400"
               style={{ filter: "drop-shadow(0 0 4px #06b6d4)" }}
@@ -72,21 +72,21 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
               Transform Ideas Into Investment Ready Pitches
             </span>
           </div>
-          <h1 className="font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-4 md:mb-6 leading-tight">
+          <h1 className="font-display font-bold text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl tracking-tight mb-3 md:mb-6 leading-tight">
             Turn Ideas Into
             <span className="block gradient-text">Investor Ready</span>
             <span className="block text-white">Pitches</span>
           </h1>
-          <p className="text-base md:text-lg lg:text-xl text-gray-300 mb-8 md:mb-10 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm md:text-lg lg:text-xl text-gray-300 mb-5 md:mb-10 max-w-3xl mx-auto leading-relaxed">
             Generate professional startup pitches in{" "}
             <span className="text-white font-semibold">under 60 seconds</span>.
             Get structured content, market analysis, and strategic insights.
           </p>
-          <div className="flex flex-row gap-3 md:gap-6 justify-center mb-10 md:mb-14">
+          <div className="flex flex-col sm:flex-row gap-2.5 md:gap-6 justify-center mb-6 md:mb-14">
             <Link href={project.demoUrl} prefetch={true}>
               <Button
                 size="lg"
-                className="bg-white text-black hover:bg-gray-200 text-sm md:text-base px-4 py-3 md:px-8 md:py-5 font-semibold rounded-xl"
+                className="bg-white text-black hover:bg-gray-200 text-sm md:text-base px-5 py-2.5 md:px-8 md:py-5 font-semibold rounded-xl w-full sm:w-auto"
               >
                 Generate My Pitch{" "}
                 <ArrowRight className="ml-1 md:ml-2 h-4 w-4 md:h-5 md:w-5" />
@@ -96,14 +96,15 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
               href="https://github.com/MuhammadTanveerAbbas/pitchcraft"
               target="_blank"
               rel="noopener noreferrer"
+              className="w-full sm:w-auto"
             >
               <Button
                 variant="outline"
                 size="lg"
-                className="border-white/20 text-white hover:bg-white/10 text-sm md:text-base px-4 py-3 md:px-8 md:py-5 rounded-xl"
+                className="border-white/20 text-white hover:bg-white/10 text-sm md:text-base px-5 py-2.5 md:px-8 md:py-5 rounded-xl w-full"
               >
                 <svg
-                  className="mr-2 h-5 w-5"
+                  className="mr-2 h-4 w-4 md:h-5 md:w-5"
                   fill="currentColor"
                   viewBox="0 0 24 24"
                   aria-hidden="true"
@@ -114,31 +115,31 @@ export default function ProjectLanding({ project }: ProjectLandingProps) {
               </Button>
             </a>
           </div>
-          <div className="flex flex-row flex-wrap justify-center gap-4 md:gap-8 max-w-3xl mx-auto">
-            <div className="flex items-center justify-center gap-2 md:gap-3">
+          <div className="flex flex-row flex-wrap justify-center gap-3 md:gap-8 max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-1.5 md:gap-3">
               <CheckCircle
-                className="h-4 w-4 md:h-5 md:w-5 text-cyan-400 flex-shrink-0"
+                className="h-3.5 w-3.5 md:h-5 md:w-5 text-cyan-400 flex-shrink-0"
                 style={{ filter: "drop-shadow(0 0 4px #06b6d4)" }}
               />
-              <span className="text-gray-300 text-sm md:text-base">
+              <span className="text-gray-300 text-xs md:text-base">
                 No signup required
               </span>
             </div>
-            <div className="flex items-center justify-center gap-2 md:gap-3">
+            <div className="flex items-center justify-center gap-1.5 md:gap-3">
               <CheckCircle
-                className="h-4 w-4 md:h-5 md:w-5 text-cyan-400 flex-shrink-0"
+                className="h-3.5 w-3.5 md:h-5 md:w-5 text-cyan-400 flex-shrink-0"
                 style={{ filter: "drop-shadow(0 0 4px #06b6d4)" }}
               />
-              <span className="text-gray-300 text-sm md:text-base">
+              <span className="text-gray-300 text-xs md:text-base">
                 Export to Markdown
               </span>
             </div>
-            <div className="flex items-center justify-center gap-2 md:gap-3">
+            <div className="flex items-center justify-center gap-1.5 md:gap-3">
               <CheckCircle
-                className="h-4 w-4 md:h-5 md:w-5 text-cyan-400 flex-shrink-0"
+                className="h-3.5 w-3.5 md:h-5 md:w-5 text-cyan-400 flex-shrink-0"
                 style={{ filter: "drop-shadow(0 0 4px #06b6d4)" }}
               />
-              <span className="text-gray-300 text-sm md:text-base">
+              <span className="text-gray-300 text-xs md:text-base">
                 Industry insights
               </span>
             </div>
