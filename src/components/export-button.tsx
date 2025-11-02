@@ -3,6 +3,7 @@
 import { Button } from '@/components/ui/button';
 import { Download } from 'lucide-react';
 import type { GeneratedPitchData } from './pitch-display';
+import { trackExport } from '@/lib/analytics';
 
 interface ExportButtonProps {
   data: GeneratedPitchData;
@@ -10,6 +11,8 @@ interface ExportButtonProps {
 
 const ExportButton: React.FC<ExportButtonProps> = ({ data }) => {
   const exportToMarkdown = () => {
+    trackExport('markdown');
+    
     const { name, elevatorPitch, keyFeatures, targetAudience, monetizationStrategy, mvpRoadmap, pitchDeckOutline, rating, justification } = data;
 
     const markdownContent = `
@@ -49,8 +52,8 @@ ${pitchDeckOutline.map(s => `### ${s.slide}\n${s.content}`).join('\n\n')}
   };
 
   return (
-    <Button onClick={exportToMarkdown}>
-      <Download className="mr-2 h-4 w-4" />
+    <Button onClick={exportToMarkdown} size="lg" className="bg-green-600 hover:bg-green-700 text-white h-12 px-8 rounded-xl font-semibold" aria-label="Export pitch to Markdown file">
+      <Download className="mr-2 h-5 w-5" aria-hidden="true" />
       Export to Markdown
     </Button>
   );

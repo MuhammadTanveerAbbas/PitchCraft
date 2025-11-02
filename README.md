@@ -1,10 +1,11 @@
 <div align="center">
 
-# 🚀 PitchCraft 🚀
+# 🚀 PitchCraft
 
-**Turn your startup idea into a compelling, one page pitch in seconds!**
+Generate comprehensive startup pitch outlines using AI. Built with Google's Gemini API.
 
-PitchCraft is an AI powered SaaS application that takes your core idea and transforms it into a structured, professional, and brutally honest startup pitch. Built with the latest web and AI technologies, it's designed to help founders, innovators, and entrepreneurs validate and articulate their vision with clarity and impact.
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Try_Now-0070f3?style=for-the-badge&logo=vercel&logoColor=white)](https://pitchcraft.vercel.app/tool)
+[![Portfolio](https://img.shields.io/badge/Portfolio-View_Project-black?style=for-the-badge&logo=vercel&logoColor=white)](https://pitchcraft.vercel.app)
 
 </div>
 
@@ -20,24 +21,86 @@ PitchCraft is an AI powered SaaS application that takes your core idea and trans
 
 ## ✨ Features
 
-- 📝 **Structured Pitch Content**: Automatically creates an elevator pitch, key features, target audience segments, monetization strategy, MVP roadmap, and a full pitch deck outline.
-- 🎨 **Industry Specific Tailoring**: Select from a wide range of industries to get advice and content tailored to your specific market.
-- 🎲 **"Surprise Me" Mode**: Feeling stuck? Generate a completely random, unique startup idea to get your creative juices flowing.
-- 📱 **Responsive Design**: A clean, modern, and mobile friendly UI built with shadcn/ui and Tailwind CSS.
-- 📄 **Export to Markdown**: Easily export your generated pitch to a clean Markdown file to share or keep for your records.
+- 📝 **Complete Pitch Generation** - Elevator pitch, market analysis, features, monetization strategy, MVP roadmap, and pitch deck outline
+- 🏭 **24+ Industry Categories** - Tailored insights for your sector
+- 💰 **Budget & Timeline Planning** - Realistic resource allocation
+- ⭐ **Viability Rating** - Honest 1-5 star assessment
+- 📄 **Markdown Export** - Download and share your pitch
+- 🎲 **Random Idea Generator** - Get inspired
+- 🔓 **No Authentication** - Start immediately
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Next.js](https://nextjs.org/) 
-- **UI Library**: [React.js](https://react.dev/)
-- **Language**: [TypeScript](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **UI Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Frontend:** [Next.js 14](https://nextjs.org/) (App Router) + [TypeScript](https://www.typescriptlang.org/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/)
+- **Forms:** React Hook Form + Zod validation
+- **AI:** [Google Gemini](https://ai.google.dev/) + [Firebase Genkit](https://firebase.google.com/docs/genkit)
+- **Hosting:** [Vercel](https://vercel.com/)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- Google AI API key ([Get one here](https://ai.google.dev/))
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/MuhammadTanveerAbbas/pitchcraft.git
+cd pitchcraft
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env.local
+# Add your Google AI API key to .env.local
+
+# Run development server
+npm run dev
+```
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+GOOGLE_GENAI_API_KEY=your_google_ai_api_key_here
+```
+
+Get your API key from [Google AI Studio](https://ai.google.dev/).
+
+### Deployment
+
+For Vercel deployment:
+
+1. Push your code to GitHub
+2. Import project in Vercel
+3. Add environment variable:
+   - Key: `GOOGLE_GENAI_API_KEY`
+   - Value: Your Google AI API key
+4. Deploy
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for detailed deployment checklist.
+
+Open [http://localhost:3000](http://localhost:3000) to see the app.
+
+
 
 ## 📜 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+MIT License
 
 ---
 
-Made with ❤️ by [Muhammad Tanveer Abbas](https://github.com/muhammadtanveerabbas)
+<div align="center">
+
+**Built by [Muhammad Tanveer Abbas](https://github.com/muhammadtanveerabbas)**
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/muhammadtanveerabbas)
+[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=flat&logo=twitter&logoColor=white)](https://x.com/m_tanveerabbas)
+[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=flat&logo=vercel&logoColor=white)](https://muhammadtanveerabbas.vercel.app)
+
+</div>

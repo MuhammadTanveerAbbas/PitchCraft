@@ -58,83 +58,85 @@ export default function DemoAuth({ onAuthenticated }: DemoAuthProps) {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background p-4">
-      <Card className="w-full max-w-md p-6">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold">Demo Access</h2>
-          <p className="text-muted-foreground mt-2">
+    <div className="min-h-screen flex items-center justify-center bg-black p-4">
+      <Card className="w-full max-w-lg p-8 bg-card/50 border-white/10">
+        <div className="text-center mb-8">
+          <h2 className="font-display text-3xl font-bold text-white mb-3">Demo Access</h2>
+          <p className="text-gray-300 text-lg">
             Login to try PitchCraft demo
           </p>
         </div>
-        <div className="space-y-6">
-          <form onSubmit={handleLogin} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+        <div className="space-y-8">
+          <form onSubmit={handleLogin} className="space-y-6">
+            <div className="space-y-3">
+              <Label htmlFor="email" className="text-white font-semibold">Email</Label>
               <Input
                 id="email"
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
+                className="h-12 bg-accent/20 border-white/20 text-white placeholder:text-gray-400"
                 required
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
+            <div className="space-y-3">
+              <Label htmlFor="password" className="text-white font-semibold">Password</Label>
               <Input
                 id="password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
+                className="h-12 bg-accent/20 border-white/20 text-white placeholder:text-gray-400"
                 required
               />
             </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id="remember" checked={rememberMe} onCheckedChange={() => setRememberMe(!rememberMe)} />
+            <div className="flex items-center space-x-3">
+              <Checkbox id="remember" checked={rememberMe} onCheckedChange={() => setRememberMe(!rememberMe)} className="border-white/20" />
               <label
                 htmlFor="remember"
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                className="text-white font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 Remember me
               </label>
             </div>
             {error && (
-              <p className="text-sm text-destructive">{error}</p>
+              <p className="text-red-400 bg-red-500/10 p-3 rounded-lg">{error}</p>
             )}
-            <Button type="submit" className="w-full">
+            <Button type="submit" className="w-full h-12 bg-white text-black hover:bg-gray-200 font-semibold rounded-xl">
               Login
             </Button>
           </form>
 
           <Separator />
 
-          <div className="space-y-3">
-            <p className="text-sm text-muted-foreground text-center">
+          <div className="space-y-4">
+            <p className="text-gray-300 text-center font-medium">
               Quick demo accounts:
             </p>
-            <div className="grid grid-cols-5 gap-2">
+            <div className="grid grid-cols-5 gap-3">
               {DUMMY_ACCOUNTS.map((account, index) => (
                 <Button
                   key={index}
                   variant="outline"
                   size="icon"
                   onClick={() => handleDemoClick(account.email, account.password)}
-                  className="h-12 w-12"
+                  className="h-14 w-14 border-white/20 text-white hover:bg-white/10 rounded-xl"
                 >
-                  <account.icon className="h-6 w-6 text-muted-foreground" />
+                  <account.icon className="h-7 w-7" />
                 </Button>
               ))}
             </div>
             {sideMessage && (
-              <Card className="p-4 mt-4">
+              <Card className="p-4 mt-4 bg-accent/20 border-white/10">
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="text-sm font-semibold">{sideMessage.email}</div>
-                    <div className="text-xs text-muted-foreground">Password: {sideMessage.password}</div>
+                    <div className="text-white font-semibold">{sideMessage.email}</div>
+                    <div className="text-gray-400">Password: {sideMessage.password}</div>
                   </div>
-                  <Button variant="ghost" size="icon" onClick={handleCopy}>
-                    <Copy className="h-4 w-4" />
+                  <Button variant="ghost" size="icon" onClick={handleCopy} className="text-white hover:bg-white/10">
+                    <Copy className="h-5 w-5" />
                   </Button>
                 </div>
               </Card>

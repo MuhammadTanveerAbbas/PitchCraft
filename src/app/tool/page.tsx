@@ -1,23 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import PitchGenerator from '@/components/pitch-generator';
-import DemoAuth from '@/components/demo-auth';
-import Cookies from 'js-cookie';
+import { Suspense } from 'react';
+import dynamic from 'next/dynamic';
+
+const PitchGenerator = dynamic(() => import('@/components/pitch-generator'), {
+  loading: () => <div className="min-h-screen bg-black flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div></div>
+});
 
 export default function DemoPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const rememberedUser = Cookies.get('rememberedUser');
-    if (rememberedUser) {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  if (!isAuthenticated) {
-    return <DemoAuth onAuthenticated={() => setIsAuthenticated(true)} />;
-  }
-
-  return <PitchGenerator />;
+  return <Suspense fallback={<div className="min-h-screen bg-black flex items-center justify-center"><div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white"></div></div>}><PitchGenerator /></Suspense>;
 }

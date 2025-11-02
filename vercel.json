@@ -1,0 +1,7 @@
+{
+  "buildCommand": "npm run build",
+  "framework": "nextjs",
+  "env": {
+    "GOOGLE_GENAI_API_KEY": "@google_genai_api_key"
+  }
+}

@@ -2,7 +2,8 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ListChecks, DollarSign, Rocket, Users, Presentation, Star, Scale } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ListChecks, DollarSign, Rocket, Users, Presentation, Star, Scale, CheckCircle } from 'lucide-react';
 import ExportButton from './export-button';
 import Thumbnail from './thumbnail';
 
@@ -20,13 +21,14 @@ export interface GeneratedPitchData {
 
 interface PitchDisplayProps {
   data: GeneratedPitchData;
+  onNewPitch?: () => void;
 }
 
 const SectionCard = ({ icon, title, children }: { icon: React.ReactNode, title: string, children: React.ReactNode }) => (
-    <Card>
+    <Card className="bg-card/50 border-white/10 hover:bg-card/70 transition-all duration-300" role="region" aria-label={title}>
         <CardHeader>
-            <CardTitle className="flex items-center gap-3 font-headline text-2xl">
-                {icon}
+            <CardTitle className="flex items-center gap-4 font-display text-2xl text-white">
+                <span aria-hidden="true">{icon}</span>
                 {title}
             </CardTitle>
         </CardHeader>
@@ -59,73 +61,118 @@ const StarRating = ({ rating }: { rating: number }) => {
   );
 };
 
-const PitchDisplay: React.FC<PitchDisplayProps> = ({ data }) => {
+const PitchDisplay: React.FC<PitchDisplayProps> = ({ data, onNewPitch }) => {
   return (
-    <div className="space-y-6 md:space-y-8">
-      <header className="flex flex-col md:flex-row gap-4 items-start justify-between">
-        <div className="flex-grow">
-            <h1 className="text-3xl md:text-4xl font-headline font-bold break-words">{data.name}</h1>
-            <p className="mt-2 text-lg md:text-xl text-muted-foreground">{data.elevatorPitch}</p>
+    <div className="space-y-12" role="article" aria-label="Generated pitch content">
+      {/* Success Header */}
+      <div className="text-center py-12 bg-gradient-to-r from-green-500/10 to-blue-500/10 rounded-2xl border border-white/10" role="region" aria-labelledby="pitch-title">
+        <div className="inline-flex items-center gap-2 bg-green-500/20 text-green-400 px-4 py-2 rounded-full text-sm font-medium mb-6" role="status">
+          <CheckCircle className="h-5 w-5" aria-hidden="true" />
+          Pitch Generated Successfully
         </div>
-        <div className="flex-shrink-0 w-full md:w-auto">
-          <ExportButton data={data} />
-        </div>
-      </header>
-      
-      <div className='flex justify-center'>
+        <h1 id="pitch-title" className="font-display text-4xl md:text-6xl font-bold mb-6 text-white">{data.name}</h1>
+        <p className="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          {data.elevatorPitch}
+        </p>
+      </div>
+
+      {/* Action Buttons */}
+      <div className="flex flex-col sm:flex-row gap-6 justify-center" role="group" aria-label="Pitch actions">
+        <ExportButton data={data} />
+        {onNewPitch && (
+          <Button variant="outline" onClick={onNewPitch} className="flex items-center gap-2 h-12 px-8 border-white/20 text-white hover:bg-white/10 rounded-xl" aria-label="Generate a new pitch">
+            <Rocket className="h-5 w-5" aria-hidden="true" />
+            Generate New Pitch
+          </Button>
+        )}
+      </div>
+      {/* Thumbnail */}
+      <div className="flex justify-center">
         <Thumbnail title={data.name} />
       </div>
 
-      <SectionCard icon={<Scale className="h-6 w-6" />} title="Brutal Rating">
-        <div className="flex flex-col sm:flex-row gap-4 items-start">
-          <div className="flex-shrink-0">
-             <StarRating rating={data.rating} />
+      {/* Rating Section */}
+      <SectionCard icon={<Scale className="h-7 w-7 text-white" />} title="Honest Assessment">
+        <div className="bg-accent/30 p-8 rounded-xl">
+          <div className="flex flex-col sm:flex-row gap-6 items-start">
+            <div className="flex-shrink-0">
+              <div className="text-center">
+                <StarRating rating={data.rating} />
+                <div className="text-3xl font-bold mt-3 text-white">{data.rating}/5</div>
+              </div>
+            </div>
+            <div className="flex-grow">
+              <p className="text-gray-300 leading-relaxed text-lg">{data.justification}</p>
+            </div>
           </div>
-          <p className="text-muted-foreground leading-relaxed">{data.justification}</p>
         </div>
       </SectionCard>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <SectionCard icon={<Rocket className="h-6 w-6" />} title="Key Features">
-            <ul className="list-disc space-y-3 pl-5">
+      {/* Key Features & Target Audience */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <SectionCard icon={<Rocket className="h-7 w-7 text-white" />} title="Key Features">
+            <div className="space-y-4">
                 {data.keyFeatures.map((feature, index) => (
-                    <li key={index}>{feature}</li>
+                    <div key={index} className="flex items-start gap-4 p-4 bg-accent/20 rounded-xl">
+                        <div className="bg-white/20 p-2 rounded-full mt-1">
+                            <div className="w-3 h-3 bg-white rounded-full"></div>
+                        </div>
+                        <span className="flex-grow text-gray-300 leading-relaxed">{feature}</span>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </SectionCard>
-        <SectionCard icon={<Users className="h-6 w-6" />} title="Target Audience">
-             <ul className="list-disc space-y-3 pl-5">
+        <SectionCard icon={<Users className="h-7 w-7 text-white" />} title="Target Audience">
+             <div className="space-y-4">
                 {data.targetAudience.map((point, index) => (
-                    <li key={index}>{point}</li>
+                    <div key={index} className="flex items-start gap-4 p-4 bg-accent/20 rounded-xl">
+                        <div className="bg-white/20 p-2 rounded-full mt-1">
+                            <div className="w-3 h-3 bg-white rounded-full"></div>
+                        </div>
+                        <span className="flex-grow text-gray-300 leading-relaxed">{point}</span>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </SectionCard>
       </div>
       
-      <SectionCard icon={<DollarSign className="h-6 w-6" />} title="Monetization Strategy">
-        <p className="leading-relaxed">{data.monetizationStrategy}</p>
+      {/* Monetization Strategy */}
+      <SectionCard icon={<DollarSign className="h-7 w-7 text-white" />} title="Monetization Strategy">
+        <div className="bg-green-500/10 p-8 rounded-xl border border-green-500/20">
+          <p className="leading-relaxed text-green-300 text-lg">{data.monetizationStrategy}</p>
+        </div>
       </SectionCard>
       
-      <SectionCard icon={<ListChecks className="h-6 w-6" />} title="MVP Roadmap">
-        <ol className="space-y-3 list-decimal list-inside">
+      {/* MVP Roadmap */}
+      <SectionCard icon={<ListChecks className="h-7 w-7 text-white" />} title="MVP Development Roadmap">
+        <div className="space-y-5">
             {data.mvpRoadmap.map((item, index) => (
-                 <li key={index}>
-                    <span>{item}</span>
-                </li>
+                 <div key={index} className="flex items-start gap-5 p-5 bg-accent/20 rounded-xl">
+                    <div className="bg-white text-black w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">
+                        {index + 1}
+                    </div>
+                    <div className="flex-grow">
+                        <span className="leading-relaxed text-gray-300 text-lg">{item}</span>
+                    </div>
+                </div>
             ))}
-        </ol>
+        </div>
       </SectionCard>
 
-      <SectionCard icon={<Presentation className="h-6 w-6" />} title="Pitch Deck Outline">
-        <div className="border rounded-lg">
-          <ul className="divide-y divide-border">
+      {/* Pitch Deck Outline */}
+      <SectionCard icon={<Presentation className="h-7 w-7 text-white" />} title="Complete Pitch Deck Outline">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {data.pitchDeckOutline.map((slide, index) => (
-                   <li key={index} className="p-4 flex flex-col sm:flex-row gap-2 sm:gap-4 items-start">
-                      <div className="font-bold sm:w-1/3 break-words text-foreground">{slide.slide}</div>
-                      <div className="sm:w-2/3 text-muted-foreground">{slide.content}</div>
-                  </li>
+                   <div key={index} className="p-6 bg-accent/20 border border-white/10 rounded-xl hover:bg-accent/30 transition-all duration-300">
+                      <div className="flex items-start gap-4 mb-4">
+                        <div className="bg-white/20 text-white w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold flex-shrink-0">
+                            {index + 1}
+                        </div>
+                        <h3 className="font-bold text-white leading-tight text-lg">{slide.slide}</h3>
+                      </div>
+                      <p className="text-gray-300 leading-relaxed">{slide.content}</p>
+                  </div>
               ))}
-          </ul>
         </div>
       </SectionCard>
     </div>
