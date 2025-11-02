@@ -1,11 +1,6 @@
 <div align="center">
 
-# 🚀 PitchCraft
-
-Generate comprehensive startup pitch outlines using AI. Built with Google's Gemini API.
-
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Try_Now-0070f3?style=for-the-badge&logo=vercel&logoColor=white)](https://pitchcraft.vercel.app/tool)
-[![Portfolio](https://img.shields.io/badge/Portfolio-View_Project-black?style=for-the-badge&logo=vercel&logoColor=white)](https://pitchcraft.vercel.app)
+# PitchCraft 🧠 Generate Best Pitches ✨
 
 </div>
 
