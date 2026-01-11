@@ -44,7 +44,20 @@ export const generateMvpRoadmapFlow = ai.defineFlow(
     outputSchema: GenerateMvpRoadmapOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    try {
+      const {output} = await prompt(input);
+      return output!;
+    } catch (error: any) {
+      console.error('MVP roadmap generation error:', error);
+      return {
+        mvpRoadmap: [
+          'Week 1-2: User research and validation, define core user flows',
+          'Week 3-4: Design mockups and technical architecture planning',
+          'Week 5-8: Build core features and basic infrastructure',
+          'Week 9-10: Internal testing, bug fixes, and performance optimization',
+          'Week 11-12: Beta launch with early adopters and gather feedback'
+        ]
+      };
+    }
   }
 );

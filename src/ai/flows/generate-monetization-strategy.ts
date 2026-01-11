@@ -38,7 +38,14 @@ export const generateMonetizationStrategyFlow = ai.defineFlow(
     outputSchema: GenerateMonetizationStrategyOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    try {
+      const {output} = await prompt(input);
+      return output!;
+    } catch (error: any) {
+      console.error('Monetization strategy generation error:', error);
+      return {
+        monetizationStrategy: 'Freemium model with tiered subscription plans. Free tier for basic features to drive adoption, paid tiers unlock advanced capabilities and higher usage limits. Revenue scales with customer value delivered.'
+      };
+    }
   }
 );

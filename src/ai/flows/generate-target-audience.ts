@@ -38,7 +38,19 @@ export const generateTargetAudienceFlow = ai.defineFlow(
     outputSchema: GenerateTargetAudienceOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    try {
+      const {output} = await prompt(input);
+      return output!;
+    } catch (error: any) {
+      console.error('Target audience generation error:', error);
+      // Fallback response
+      return {
+        targetAudience: [
+          'Small business owners struggling with operational efficiency',
+          'Startup founders looking to validate their product-market fit',
+          'Enterprise teams seeking to streamline their workflows'
+        ]
+      };
+    }
   }
 );

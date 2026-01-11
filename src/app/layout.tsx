@@ -3,31 +3,18 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import LoadingOverlay from "@/components/loading-overlay";
 import { ErrorBoundary } from "@/components/error-boundary";
-import { Inter, Poppins, JetBrains_Mono } from "next/font/google";
+import { AuthProvider } from "@/contexts/auth-context";
+import { Inter } from "next/font/google";
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["300", "400", "500", "600", "700", "800"],
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "PitchCraft - AI Startup Pitch Generator | Create Investor-Ready Pitches in 60s",
-    template: "%s | PitchCraft"
+    default: "PitchCraft - AI Startup Pitch Generator",
+    template: "%s | PitchCraft",
   },
   description:
     "Transform your startup idea into a professional, investor-ready pitch in under 60 seconds. Get structured content, market analysis, MVP roadmap, and pitch deck outline with AI. Free, no signup required.",
@@ -43,18 +30,24 @@ export const metadata: Metadata = {
     "startup pitch template",
     "investor presentation",
     "business pitch ai",
-    "pitch deck ai"
+    "pitch deck ai",
   ],
-  authors: [{ name: "Muhammad Tanveer Abbas", url: "https://muhammadtanveerabbas.vercel.app" }],
+  authors: [
+    {
+      name: "Muhammad Tanveer Abbas",
+      url: "https://muhammadtanveerabbas.vercel.app",
+    },
+  ],
   creator: "Muhammad Tanveer Abbas",
   publisher: "PitchCraft",
   applicationName: "PitchCraft",
   icons: {
     icon: [
-      { url: "/icon.svg", type: "image/svg+xml" }
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
     ],
-    shortcut: "/icon.svg",
-    apple: "/icon.svg"
+    shortcut: "/favicon.svg",
+    apple: "/icon.svg",
   },
   manifest: "/manifest.json",
   appleWebApp: {
@@ -80,7 +73,7 @@ export const metadata: Metadata = {
     description:
       "Generate professional startup pitches in 60 seconds. Get structured content, market insights, and investor-ready presentations.",
     creator: "@m_tanveerabbas",
-    site: "@m_tanveerabbas"
+    site: "@m_tanveerabbas",
   },
   robots: {
     index: true,
@@ -88,9 +81,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
   alternates: {
@@ -105,16 +98,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`dark ${inter.variable} ${poppins.variable} ${jetbrainsMono.variable}`}
-    >
-      <body className="font-sans antialiased bg-black">
-        <ErrorBoundary>
+    <html lang="en" className="dark">
+      <body className={`${inter.className} antialiased bg-black`}>
+        <AuthProvider>
           {children}
           <Toaster />
           <LoadingOverlay />
-        </ErrorBoundary>
+        </AuthProvider>
       </body>
     </html>
   );

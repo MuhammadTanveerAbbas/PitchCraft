@@ -1,13 +1,6 @@
 'use server';
 
-/**
- * @fileOverview A flow for generating a random startup idea.
- *
- * - generateRandomIdea - A function that generates a random startup name and core problem.
- * - GenerateRandomIdeaOutput - The return type for the generateRandomIdea function.
- */
-
-import {ai} from '@/ai/genkit';
+import {ai, withRetry} from '@/ai/genkit';
 import {z} from 'genkit';
 
 const GenerateRandomIdeaOutputSchema = z.object({
@@ -17,7 +10,7 @@ const GenerateRandomIdeaOutputSchema = z.object({
 export type GenerateRandomIdeaOutput = z.infer<typeof GenerateRandomIdeaOutputSchema>;
 
 export async function generateRandomIdea(): Promise<GenerateRandomIdeaOutput> {
-  return generateRandomIdeaFlow();
+  return withRetry(() => generateRandomIdeaFlow());
 }
 
 const prompt = ai.definePrompt({

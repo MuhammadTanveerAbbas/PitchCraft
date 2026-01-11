@@ -5,6 +5,7 @@ import { generateTargetAudienceFlow } from './generate-target-audience';
 import { generateMonetizationStrategyFlow } from './generate-monetization-strategy';
 import { generateMvpRoadmapFlow } from './generate-mvp-roadmap';
 import { generatePitchDeckOutlineFlow } from './generate-pitch-deck-outline';
+import { withRetry } from '@/ai/genkit';
 import {z} from 'genkit';
 
 const GenerateStartupElementsInputSchema = z.object({
@@ -40,19 +41,21 @@ const GenerateStartupElementsOutputSchema = z.object({
 export type GenerateStartupElementsOutput = z.infer<typeof GenerateStartupElementsOutputSchema>;
 
 export async function generateStartupElements(input: GenerateStartupElementsInput): Promise<GenerateStartupElementsOutput> {
-    const [keyFeatures, targetAudience, monetizationStrategy, mvpRoadmap, pitchDeckOutline] = await Promise.all([
-        generateKeyFeaturesFlow(input),
-        generateTargetAudienceFlow(input),
-        generateMonetizationStrategyFlow(input),
-        generateMvpRoadmapFlow(input),
-        generatePitchDeckOutlineFlow(input),
-    ]);
+    return withRetry(async () => {
+        const [keyFeatures, targetAudience, monetizationStrategy, mvpRoadmap, pitchDeckOutline] = await Promise.all([
+            generateKeyFeaturesFlow(input),
+            generateTargetAudienceFlow(input),
+            generateMonetizationStrategyFlow(input),
+            generateMvpRoadmapFlow(input),
+            generatePitchDeckOutlineFlow(input),
+        ]);
 
-    return {
-        ...keyFeatures,
-        ...targetAudience,
-        ...monetizationStrategy,
-        ...mvpRoadmap,
-        ...pitchDeckOutline,
-    };
+        return {
+            ...keyFeatures,
+            ...targetAudience,
+            ...monetizationStrategy,
+            ...mvpRoadmap,
+            ...pitchDeckOutline,
+        };
+    });
 }

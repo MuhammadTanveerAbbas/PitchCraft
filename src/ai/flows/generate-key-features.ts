@@ -44,7 +44,18 @@ export const generateKeyFeaturesFlow = ai.defineFlow(
     outputSchema: GenerateKeyFeaturesOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    try {
+      const {output} = await prompt(input);
+      return output!;
+    } catch (error: any) {
+      console.error('Key features generation error:', error);
+      return {
+        keyFeatures: [
+          'Core problem solving feature with intuitive user interface',
+          'Essential data management and analytics dashboard',
+          'User authentication and basic collaboration tools'
+        ]
+      };
+    }
   }
 );

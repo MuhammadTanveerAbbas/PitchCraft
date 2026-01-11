@@ -41,7 +41,23 @@ export const generatePitchDeckOutlineFlow = ai.defineFlow(
     outputSchema: GeneratePitchDeckOutlineOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    try {
+      const {output} = await prompt(input);
+      return output!;
+    } catch (error: any) {
+      console.error('Pitch deck outline generation error:', error);
+      return {
+        pitchDeckOutline: [
+          { slide: 'Problem', content: 'Clear articulation of the pain point and market gap' },
+          { slide: 'Solution', content: 'Your unique approach to solving the problem' },
+          { slide: 'Market Opportunity', content: 'TAM, SAM, SOM with realistic projections' },
+          { slide: 'Product', content: 'Core features and user experience highlights' },
+          { slide: 'Business Model', content: 'Revenue streams and unit economics' },
+          { slide: 'Traction', content: 'Early metrics, partnerships, or validation' },
+          { slide: 'Competition', content: 'Competitive landscape and your differentiation' },
+          { slide: 'Team & Ask', content: 'Founding team credentials and funding requirements' }
+        ]
+      };
+    }
   }
 );

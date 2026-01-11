@@ -25,7 +25,7 @@ export const projects: Project[] = [
     solution: 'PitchCraft uses AI to instantly transform any startup idea into a structured, professional pitch. Input your core problem and get a complete pitch with elevator pitch, target audience analysis, monetization strategy, MVP roadmap, and exportable markdown format.',
     result: 'Founder onboarded 25 beta users and secured investor interest within the first month. Users report saving 15+ hours on pitch preparation and achieving 40% higher engagement rates in investor meetings.',
     techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'Google AI', 'Genkit', 'Vercel', 'React Hook Form', 'Zod'],
-    demoUrl: '/tool',
+    demoUrl: '/dashboard',
     screenshots: [
       {
         url: '/screenshots/form.png',

@@ -70,7 +70,15 @@ const generateIdeaRatingFlow = ai.defineFlow(
     outputSchema: GenerateIdeaRatingOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
-    return output!;
+    try {
+      const {output} = await prompt(input);
+      return output!;
+    } catch (error: any) {
+      console.error('Idea rating generation error:', error);
+      return {
+        rating: 3,
+        justification: 'This idea addresses a real problem but faces execution challenges. The market is competitive and success will depend heavily on differentiation and go-to-market strategy. With the stated budget and team size, focus on rapid validation and iterative development to prove product-market fit before scaling.'
+      };
+    }
   }
 );

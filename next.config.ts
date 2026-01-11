@@ -8,6 +8,27 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  outputFileTracingIncludes: {
+    '/': ['./src/**/*'],
+  },
+  webpack: (config, { isServer, dev }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      };
+    }
+    config.ignoreWarnings = [
+      { module: /node_modules\/handlebars\/lib\/index\.js/ },
+    ];
+    if (dev) {
+      config.watchOptions = {
+        poll: 1000,
+        aggregateTimeout: 300,
+      };
+    }
+    return config;
+  },
   images: {
     remotePatterns: [
       {
@@ -43,6 +64,7 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   experimental: {
     optimizePackageImports: ['lucide-react', '@radix-ui/react-icons'],
+    webpackBuildWorker: true,
   },
 };
 

@@ -1,158 +1,125 @@
-<div align="center">
+# PitchCraft
 
-# PitchCraft 🧠 Generate Investor Ready Pitches Instantly ✨
+**AI-Powered Startup Pitch Generator**
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![shadcn/ui](https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=shadcn-ui&logoColor=white)
-
-</div>
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-FF6B00?style=flat&logo=ai&logoColor=white)
 
 ---
 
-## 💡 What is PitchCraft?
+## What is PitchCraft?
 
-**PitchCraft** is a professional **pitch generation tool** that transforms raw startup ideas into **investor ready presentations**.  
-It analyzes your concept across multiple dimensions market viability, competitive positioning, monetization potential, and technical feasibility then produces a complete, structured pitch document including:
+PitchCraft uses AI to generate structured startup pitches in under 60 seconds. Enter your idea, and get a complete pitch with market analysis, features, roadmap, and viability rating.
 
----
-
-## 🚀 Why Use PitchCraft?
-
-### ⚡ Time Compression  
-Get in minutes what usually takes **days or weeks** detailed, investor ready pitch content.
-
-### 🧩 Structured Thinking  
-Force systematic evaluation of key business areas like competition, GTM strategy, and feasibility.
-
-### 🧾 Professional Output  
-Generates **clean, markdown formatted** pitch documents ready to share with co founders or investors.
-
-### 🧠 Risk Mitigation  
-Receive an **honest viability rating** that highlights potential challenges before heavy investment.
-
-### 🌐 Accessibility  
-No signups. No paywalls. No fluff. Just **open the tool, describe your idea, and get your pitch.**
+**Generated Content:**
+- Elevator Pitch
+- Market Analysis
+- Key Features (3-5)
+- Monetization Strategy
+- MVP Roadmap
+- Pitch Deck Outline
+- Viability Rating (1-5 stars)
+- Markdown Export
 
 ---
 
-## 🧩 The Problems It Solves
+## Tech Stack
 
-### 🚦 The Cold Start Problem  
-Turning vague ideas into tangible business models is hard. PitchCraft structures your thoughts and outputs clarity.
-
-### 🔍 Analysis Paralysis  
-Stop spending weeks in research loops get a validated, structured baseline instantly.
-
-### 💬 Communication Gaps  
-Bridges business and technical perspectives with unified insights for both founders and developers.
-
-### 📊 Resource Planning  
-Provides **budget and timeline estimates** to guide co founders, clients, and investors realistically.
-
-### 🖼️ Presentation Overhead  
-Skip blank slides generate ready to use deck outlines and refine from there.
+- **Framework:** Next.js 15 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS, shadcn/ui
+- **AI:** Groq (Llama 3.3 70B)
+- **Auth:** Supabase
+- **Payments:** Stripe
+- **Deployment:** Vercel
 
 ---
 
-## ✨ Features
+## Features
 
-- 📝 **Complete Pitch Generation** : From elevator pitch to deck outline  
-- 🏭 **24+ Industry Categories** : Sector specific insights  
-- 💰 **Budget & Timeline Planning** : Realistic estimations  
-- ⭐ **Viability Rating** : Objective 1 to 5 star assessment  
-- 📄 **Markdown Export** : Share ready professional format  
-- 🎲 **Random Idea Generator** : Get inspiration instantly  
-- 🔓 **No Authentication** : Zero friction setup  
-
----
-
-## 🛠️ Tech Stack
-
-| Category | Technology |
-|-----------|-------------|
-| **Frontend** | [Next.js 14](https://nextjs.org/) (App Router), [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/) |
-| **Styling** | [Tailwind CSS](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/) |
-| **Forms & Validation** | React Hook Form + Zod |
-| **AI Engine** | [Google Gemini](https://ai.google.dev/) via [Firebase Genkit](https://firebase.google.com/docs/genkit) |
-| **Hosting** | [Vercel](https://vercel.com/) |
+- Fast generation (under 60 seconds)
+- 24+ industry categories
+- Complete pitch structure
+- Market analysis & insights
+- Markdown export
+- User authentication
+- Free & paid plans
+- Dashboard with analytics
+- Responsive design
 
 ---
 
-## ⚙️ Getting Started
+## Setup
 
-### ✅ Prerequisites
+### Prerequisites
+- Node.js 18+
+- Groq API key ([Get one here](https://console.groq.com))
+- Supabase account ([Sign up](https://supabase.com))
+- Stripe account (optional, for payments)
 
-- Node.js **18+**
-- A [Google AI API key](https://ai.google.dev/)
-
-### 🧰 Installation
+### Installation
 
 ```bash
-# Clone the repository
 git clone https://github.com/MuhammadTanveerAbbas/pitchcraft.git
 cd pitchcraft
-
-# Install dependencies
 npm install
-
-# Set up environment variables
-cp .env.example .env.local
-
-# Add your Google AI API key to .env.local
-
-# Run the development server
-npm run dev
-````
-
-Then visit 👉 [http://localhost:3000](http://localhost:3000)
-
----
-
-### 🔑 Environment Variables
-
-Create a `.env.local` file in the root directory:
-
-```env
-GOOGLE_GENAI_API_KEY=your_google_ai_api_key_here
 ```
 
-You can get your API key from [Google AI Studio](https://ai.google.dev/).
+### Environment Variables
+
+Create `.env.local`:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+STRIPE_SECRET_KEY=your_stripe_secret_key
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
+```
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+Visit [http://localhost:3000](http://localhost:3000)
 
 ---
 
-### ☁️ Deployment (Vercel)
+## Deployment
 
-1. Push your project to GitHub
-2. Import into [Vercel](https://vercel.com/)
-3. Add environment variable:
+### Vercel (Recommended)
 
-   * **Key:** `GOOGLE_GENAI_API_KEY`
-   * **Value:** Your Google AI key
-4. Deploy 🚀
-
-For more details, see [DEPLOYMENT.md](./DEPLOYMENT.md).
+1. Push to GitHub
+2. Import to Vercel
+3. Add environment variables
+4. Deploy
 
 ---
 
-<div align="center">
+## What PitchCraft Is NOT
 
-# 👨‍💻 Muhammad Tanveer Abbas
+- Not a replacement for market research
+- Not legal or financial advice
+- Not a guarantee of funding
+- Not industry-specific expertise
 
-**SaaS MVP Developer** • **AI Integration Expert** • **Full Stack Developer**
-
-⚡ Specialized in Building Production Ready SaaS MVPs for founders in Weeks
-
-**Next.js • TypeScript • Firebase • AI • Tailwind CSS**
-
-💼 **[View Portfolio](https://muhammadtanveerabbas.vercel.app/)**
+PitchCraft accelerates your pitch creation process but doesn't replace the hard work of building a real business.
 
 ---
 
-⭐ **Star this repo** if you find it inspiring!
+## License
 
-Built with ❤️ to showcase professional SaaS MVP development.
+MIT License
 
-</div>
+---
+
+## Author
+
+**Muhammad Tanveer Abbas**
+
+[Portfolio](https://muhammadtanveerabbas.vercel.app/) • [GitHub](https://github.com/MuhammadTanveerAbbas) • [LinkedIn](https://linkedin.com/in/muhammadtanveerabbas)
