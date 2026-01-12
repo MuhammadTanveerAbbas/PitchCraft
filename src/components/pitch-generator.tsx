@@ -338,7 +338,7 @@ export default function PitchGenerator() {
                 Craft Your Perfect Pitch
               </h1>
               <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Transform your startup idea into a professional, investor-ready pitch in <span className="text-cyan-400 font-semibold">under 60 seconds</span>
+                Transform your startup idea into a professional, investor ready pitch in <span className="text-cyan-400 font-semibold">under 60 seconds</span>
               </p>
               <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-400 pt-4">
                 <div className="flex items-center gap-2">

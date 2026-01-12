@@ -2,34 +2,34 @@
 
 **AI-Powered Startup Pitch Generator**
 
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=flat&logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq-FF6B00?style=flat&logo=ai&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq_AI-FF6B00?style=flat&logo=ai&logoColor=white)
 
 ---
 
-## What is PitchCraft?
+## 🚀 What is PitchCraft?
 
 PitchCraft uses AI to generate structured startup pitches in under 60 seconds. Enter your idea, and get a complete pitch with market analysis, features, roadmap, and viability rating.
 
 **Generated Content:**
-- Elevator Pitch
-- Market Analysis
-- Key Features (3-5)
-- Monetization Strategy
-- MVP Roadmap
-- Pitch Deck Outline
-- Viability Rating (1-5 stars)
-- Markdown Export
+- ✅ Elevator Pitch
+- 📊 Market Analysis
+- ✨ Key Features (3-5)
+- 💰 Monetization Strategy
+- 🛣️ MVP Roadmap
+- 📝 Pitch Deck Outline
+- ⭐ Viability Rating (1-5 stars)
+- 📥 Markdown Export
 
 ---
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 - **Framework:** Next.js 15 (App Router)
 - **Language:** TypeScript
-- **Styling:** Tailwind CSS, shadcn/ui
+- **Styling:** Tailwind CSS, shadcn/ui, Inter Font
 - **AI:** Groq (Llama 3.3 70B)
 - **Auth:** Supabase
 - **Payments:** Stripe
@@ -37,21 +37,22 @@ PitchCraft uses AI to generate structured startup pitches in under 60 seconds. E
 
 ---
 
-## Features
+## ✨ Features
 
-- Fast generation (under 60 seconds)
-- 24+ industry categories
-- Complete pitch structure
-- Market analysis & insights
-- Markdown export
-- User authentication
-- Free & paid plans
-- Dashboard with analytics
-- Responsive design
+- ⚡ Fast generation (under 60 seconds)
+- 🏭 24+ industry categories
+- 📝 Complete pitch structure
+- 📊 Market analysis & insights
+- 📥 Markdown export
+- 🔐 User authentication
+- 🎁 Free & paid plans
+- 📊 Dashboard with analytics
+- 📱 Fully responsive design
+- 🎨 Modern brutalist UI
 
 ---
 
-## Setup
+## 🛠️ Setup
 
 ### Prerequisites
 - Node.js 18+
@@ -88,9 +89,16 @@ npm run dev
 
 Visit [http://localhost:3000](http://localhost:3000)
 
+### Build for Production
+
+```bash
+npm run build
+npm start
+```
+
 ---
 
-## Deployment
+## 🚀 Deployment
 
 ### Vercel (Recommended)
 
@@ -101,7 +109,7 @@ Visit [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## What PitchCraft Is NOT
+## ⚠️ What PitchCraft Is NOT
 
 - Not a replacement for market research
 - Not legal or financial advice
@@ -112,13 +120,13 @@ PitchCraft accelerates your pitch creation process but doesn't replace the hard 
 
 ---
 
-## License
+## 📝 License
 
 MIT License
 
 ---
 
-## Author
+## 👨‍💻 Author
 
 **Muhammad Tanveer Abbas**
 

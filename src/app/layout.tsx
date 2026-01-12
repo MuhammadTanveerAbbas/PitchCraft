@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | PitchCraft",
   },
   description:
-    "Transform your startup idea into a professional, investor-ready pitch in under 60 seconds. Get structured content, market analysis, MVP roadmap, and pitch deck outline with AI. Free, no signup required.",
+    "Transform your startup idea into a professional, investor ready pitch in under 60 seconds. Get structured content, market analysis, MVP roadmap, and pitch deck outline with AI. Free, no signup required.",
   keywords: [
     "startup pitch generator",
     "ai pitch deck",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PitchCraft - AI Startup Pitch Generator",
     description:
-      "Generate professional startup pitches in 60 seconds. Get structured content, market insights, and investor-ready presentations.",
+      "Generate professional startup pitches in 60 seconds. Get structured content, market insights, and investor ready presentations.",
     creator: "@m_tanveerabbas",
     site: "@m_tanveerabbas",
   },

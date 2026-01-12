@@ -52,12 +52,15 @@
 @layer base {
   * {
     @apply border-border;
+    font-family: "Inter", "Inter Fallback", sans-serif;
   }
   body {
     @apply bg-background text-foreground;
+    font-family: "Inter", "Inter Fallback", sans-serif;
   }
   html {
     scroll-behavior: smooth;
+    font-family: "Inter", "Inter Fallback", sans-serif;
   }
   
   /* Hide scrollbar but keep functionality */

@@ -1,7 +1,7 @@
 {
   "name": "PitchCraft - AI Startup Pitch Generator",
   "short_name": "PitchCraft",
-  "description": "Transform your startup idea into a professional, investor-ready pitch in under 60 seconds",
+  "description": "Transform your startup idea into a professional, investor ready pitch in under 60 seconds",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#000000",
