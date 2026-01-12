@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { LayoutDashboard, Star, User, LogOut, Zap, Sparkles, Crown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -18,6 +18,23 @@ export function DashboardLayout({ children, activeSection, onSectionChange }: Da
   const router = useRouter();
   const supabase = createClient();
   const { user } = useAuth();
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -32,7 +49,9 @@ export function DashboardLayout({ children, activeSection, onSectionChange }: Da
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-white">
-      <nav className="sticky top-0 z-50 py-2 sm:py-4">
+      <nav className={`sticky top-0 z-50 py-2 sm:py-4 transition-all duration-500 ${
+        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+      }`}>
         <div className="max-w-7xl mx-auto px-3 sm:px-6">
           <div className="flex items-center justify-between bg-white/5 backdrop-blur-xl border border-white/10 rounded-full px-3 sm:px-6 py-2 sm:py-3">
             <Link href="/" className="flex items-center gap-1.5 sm:gap-2 group">

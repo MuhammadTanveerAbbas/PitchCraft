@@ -38,9 +38,12 @@ export default function DashboardPage() {
     if (user) {
       // Fetch real stats
       fetch('/api/dashboard/stats')
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) throw new Error('Failed to fetch stats');
+          return res.json();
+        })
         .then(data => setStats(data))
-        .catch(err => console.error('Failed to fetch stats:', err));
+        .catch(() => console.error('Stats fetch failed'));
     }
   }, [user]);
 
@@ -69,7 +72,7 @@ export default function DashboardPage() {
       <AnalyticsSection />
 
       <div className="grid md:grid-cols-2 gap-4">
-        <Card className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border-cyan-500/20 p-6 hover:scale-105 transition-all cursor-pointer" onClick={() => setActiveSection('generate')}>
+        <Card className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border-cyan-500/20 p-6 cursor-pointer" onClick={() => setActiveSection('generate')}>
           <h3 className="font-bold mb-2 flex items-center gap-2 text-lg">
             <Zap className="w-5 h-5 text-cyan-400" />
             Generate New Pitch
@@ -84,7 +87,7 @@ export default function DashboardPage() {
         </Card>
 
         {stats.plan === 'Free' && (
-          <Card className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-purple-500/20 p-6 hover:scale-105 transition-all">
+          <Card className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border-purple-500/20 p-6">
             <h3 className="font-bold mb-2 flex items-center gap-2 text-lg">
               <Crown className="w-5 h-5 text-purple-400" />
               Upgrade to Premium
@@ -166,9 +169,9 @@ export default function DashboardPage() {
           <div className="flex items-center justify-between p-3 bg-black/30 rounded-lg">
             <div>
               <p className="text-sm font-medium">Password</p>
-              <p className="text-xs text-gray-400">Last changed 30 days ago</p>
+              <p className="text-xs text-gray-400">Manage your password</p>
             </div>
-            <Button size="sm" variant="outline" className="text-xs">
+            <Button size="sm" variant="outline" className="text-xs" disabled>
               Change
             </Button>
           </div>
@@ -209,7 +212,7 @@ export default function DashboardPage() {
               <p className="text-sm font-medium">Delete Account</p>
               <p className="text-xs text-gray-400">Permanently delete your account and all data</p>
             </div>
-            <Button size="sm" variant="outline" className="text-xs text-red-400 border-red-400/20 hover:bg-red-500/10">
+            <Button size="sm" variant="outline" className="text-xs text-red-400 border-red-400/20 hover:bg-red-500/10" disabled>
               Delete
             </Button>
           </div>

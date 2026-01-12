@@ -7,11 +7,7 @@ import Link from 'next/link'
 import { LayoutDashboard } from 'lucide-react'
 
 export function UserMenu() {
-  const { user, loading } = useAuth()
-
-  if (loading) {
-    return <div className="w-24 h-10 rounded-lg bg-white/10 animate-pulse" />
-  }
+  const { user } = useAuth()
 
   if (!user) {
     return (

@@ -72,7 +72,10 @@ export default function PricingPage() {
       const response = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ billingCycle }),
+        body: JSON.stringify({ 
+          email: user.email,
+          userId: user.id,
+        }),
       });
 
       const { url } = await response.json();
@@ -155,7 +158,7 @@ export default function PricingPage() {
             return (
               <div
                 key={plan.name}
-                className={`relative rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 transition-all duration-300 hover:scale-105 ${
+                className={`relative rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 transition-all ${
                   plan.popular
                     ? 'bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20 border-2 border-blue-500'
                     : 'bg-zinc-900 border border-zinc-800'
@@ -237,6 +240,22 @@ export default function PricingPage() {
           })}
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="border-t border-zinc-800 py-8 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="flex items-center gap-2">
+              <img src="/icon.svg" alt="PitchCraft" className="w-6 h-6" />
+              <span className="font-bold text-lg">PitchCraft</span>
+            </div>
+            <p className="text-sm text-zinc-400">© 2024 PitchCraft. All rights reserved.</p>
+            <p className="text-sm text-zinc-400">
+              Built by <a href="https://muhammadtanveerabbas.vercel.app" target="_blank" className="text-blue-400 hover:text-blue-300">Muhammad Tanveer Abbas</a>
+            </p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -68,32 +68,32 @@ export default function LoginPage() {
 
           <form onSubmit={handleLogin} className="space-y-3.5 sm:space-y-4">
             <div>
-              <Label htmlFor="email" className="text-xs text-gray-400 mb-1.5 block">Email</Label>
               <Input
                 id="email"
                 type="email"
+                placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="bg-black/50 border-white/20 h-9 sm:h-10 text-sm focus:border-cyan-500"
+                className="bg-black/50 border-white/20 h-10 sm:h-11 text-sm focus:border-cyan-500 focus-visible:ring-0 focus-visible:ring-offset-0"
               />
             </div>
 
             <div>
-              <Label htmlFor="password" className="text-xs text-gray-400 mb-1.5 block">Password</Label>
               <div className="relative">
                 <Input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
+                  placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="bg-black/50 border-white/20 h-9 sm:h-10 pr-9 text-sm focus:border-cyan-500"
+                  className="bg-black/50 border-white/20 h-10 sm:h-11 pr-10 text-sm focus:border-cyan-500 focus-visible:ring-0 focus-visible:ring-offset-0"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-400 transition"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-cyan-400 transition"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -106,7 +106,7 @@ export default function LoginPage() {
               </Link>
             </div>
 
-            <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white h-9 sm:h-10 font-semibold text-sm shadow-lg shadow-cyan-500/20">
+            <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white h-10 sm:h-11 font-semibold text-sm shadow-lg shadow-cyan-500/20">
               {loading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>

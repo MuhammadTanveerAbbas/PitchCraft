@@ -302,7 +302,7 @@ export default function PitchGenerator() {
   };
 
   return (
-    <main className="min-h-screen bg-black text-white">
+    <main className="min-h-screen text-white">
       <div className="container mx-auto max-w-7xl p-4 md:p-8">
         {pitchData && (
           <div className="fixed top-20 right-4 z-40 animate-fade-in">
@@ -320,45 +320,9 @@ export default function PitchGenerator() {
         )}
         {!pitchData && (
           <>
-            <div
-              className="text-center mb-12 md:mb-16 animate-fade-in space-y-6"
-              role="region"
-              aria-label="Page header"
-            >
-              <div
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 border border-cyan-500/30 px-4 py-2 rounded-full mb-2 hover:scale-105 transition-transform"
-                role="status"
-              >
-                <Rocket className="h-4 w-4 text-cyan-400 animate-pulse" aria-hidden="true" />
-                <span className="text-sm font-semibold text-cyan-300">
-                  AI-Powered Pitch Generation
-                </span>
-              </div>
-              <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-cyan-200 to-blue-300 bg-clip-text text-transparent leading-tight">
-                Craft Your Perfect Pitch
-              </h1>
-              <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Transform your startup idea into a professional, investor ready pitch in <span className="text-cyan-400 font-semibold">under 60 seconds</span>
-              </p>
-              <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-400 pt-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span>Market Analysis</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span>MVP Roadmap</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                  <span>Pitch Deck Outline</span>
-                </div>
-              </div>
-            </div>
-
             <div className="max-w-5xl mx-auto space-y-6">
               <UsageBanner />
-              <div className="bg-gradient-to-br from-white/5 to-white/10 border border-white/10 rounded-3xl p-6 md:p-10 backdrop-blur-xl shadow-2xl">
+              <div className="bg-gradient-to-br from-white/[0.07] to-white/[0.03] border border-white/20 rounded-3xl p-6 md:p-10 backdrop-blur-xl shadow-2xl hover:border-cyan-500/30 transition-all">
                 <PitchForm
                   onGenerate={handleGenerate}
                   onSurpriseMe={handleSurpriseMe}
@@ -386,23 +350,7 @@ export default function PitchGenerator() {
           </div>
         )}
 
-        <footer className="mt-16 pt-8 border-t text-center text-muted-foreground">
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="https://github.com/MuhammadTanveerAbbas/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-foreground transition-colors"
-            >
-              <Github className="h-4 w-4" />
-              <span>MuhammadTanveerAbbas</span>
-            </Link>
-            <span className="hidden sm:block">•</span>
-            <Link href="/" className="hover:text-foreground transition-colors">
-              About PitchCraft
-            </Link>
-          </div>
-        </footer>
+
       </div>
 
       <UpgradeModal open={showUpgradeModal} onClose={() => setShowUpgradeModal(false)} />
