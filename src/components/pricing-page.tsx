@@ -1,61 +1,61 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Check, X, Sparkles, Zap, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import Link from 'next/link';
-import { useAuth } from '@/contexts/auth-context';
-import { useRouter } from 'next/navigation';
-import { useToast } from '@/hooks/use-toast';
+import { useState } from "react";
+import { Check, X, Sparkles, Zap, ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { useAuth } from "@/contexts/auth-context";
+import { useRouter } from "next/navigation";
+import { useToast } from "@/hooks/use-toast";
 
 const plans = [
   {
-    name: 'Free',
+    name: "Free",
     price: { monthly: 0, yearly: 0 },
-    description: 'Perfect for testing your first ideas',
+    description: "Perfect for testing your first ideas",
     features: [
-      '5 pitch generations per day',
-      'Basic pitch structure',
-      'Market analysis',
-      'MVP roadmap',
-      'Markdown export',
-      'Viability rating',
+      "5 pitch generations per day",
+      "Basic pitch structure",
+      "Market analysis",
+      "MVP roadmap",
+      "Markdown export",
+      "Viability rating",
     ],
     limitations: [
-      'Advanced AI insights',
-      'Priority generation',
-      'Custom branding',
-      'API access',
+      "Advanced AI insights",
+      "Priority generation",
+      "Custom branding",
+      "API access",
     ],
-    cta: 'Start Free',
+    cta: "Start Free",
     popular: false,
     icon: Sparkles,
   },
   {
-    name: 'Premium',
-    price: { monthly: 20, yearly: 192 },
-    description: 'For serious founders building multiple ventures',
+    name: "Premium",
+    price: { monthly: 9, yearly: 86 },
+    description: "For serious founders building multiple ventures",
     features: [
-      '50 pitch generations per day',
-      'Advanced AI insights',
-      'Priority generation (2x faster)',
-      'Detailed competitor analysis',
-      'Financial projections',
-      'Custom pitch templates',
-      'Team collaboration',
-      'Priority support',
-      'API access',
-      'Remove PitchCraft branding',
+      "50 pitch generations per day",
+      "Advanced AI insights",
+      "Priority generation (2x faster)",
+      "Detailed competitor analysis",
+      "Financial projections",
+      "Custom pitch templates",
+      "Priority support",
+      "API access",
     ],
     limitations: [],
-    cta: 'Upgrade to Premium',
+    cta: "Upgrade to Premium",
     popular: true,
     icon: Zap,
   },
 ];
 
 export default function PricingPage() {
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">(
+    "monthly"
+  );
   const [loading, setLoading] = useState(false);
   const { user } = useAuth();
   const router = useRouter();
@@ -63,16 +63,16 @@ export default function PricingPage() {
 
   const handleUpgrade = async () => {
     if (!user) {
-      router.push('/auth/login');
+      router.push("/auth/login");
       return;
     }
 
     setLoading(true);
     try {
-      const response = await fetch('/api/stripe/checkout', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ 
+      const response = await fetch("/api/stripe/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           email: user.email,
           userId: user.id,
         }),
@@ -84,9 +84,9 @@ export default function PricingPage() {
       }
     } catch (error) {
       toast({
-        variant: 'destructive',
-        title: 'Error',
-        description: 'Failed to start checkout. Please try again.',
+        variant: "destructive",
+        title: "Error",
+        description: "Failed to start checkout. Please try again.",
       });
     } finally {
       setLoading(false);
@@ -98,12 +98,23 @@ export default function PricingPage() {
       {/* Header */}
       <header className="border-b border-zinc-800">
         <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-4 flex justify-between items-center">
-          <Link href="/" className="text-lg sm:text-xl md:text-2xl font-bold font-display flex items-center gap-1.5 sm:gap-2">
-            <img src="/icon.svg" alt="PitchCraft" className="w-6 h-6 sm:w-8 sm:h-8" />
+          <Link
+            href="/"
+            className="text-lg sm:text-xl md:text-2xl font-bold font-display flex items-center gap-1.5 sm:gap-2"
+          >
+            <img
+              src="/icon.svg"
+              alt="PitchCraft"
+              className="w-6 h-6 sm:w-8 sm:h-8"
+            />
             PitchCraft 🚀
           </Link>
           <Link href="/dashboard">
-            <Button variant="outline" size="sm" className="text-xs sm:text-sm px-2 sm:px-4">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-xs sm:text-sm px-2 sm:px-4"
+            >
               Dashboard
             </Button>
           </Link>
@@ -117,27 +128,28 @@ export default function PricingPage() {
             Simple, Transparent Pricing
           </h1>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-zinc-400 max-w-2xl mx-auto mb-4 sm:mb-6 md:mb-8 px-2">
-            Start free and upgrade when you need more power. No hidden fees, cancel anytime.
+            Start free and upgrade when you need more power. No hidden fees,
+            cancel anytime.
           </p>
 
           {/* Billing Toggle */}
           <div className="inline-flex items-center gap-2 sm:gap-4 bg-zinc-900 p-1 sm:p-1.5 rounded-full">
             <button
-              onClick={() => setBillingCycle('monthly')}
+              onClick={() => setBillingCycle("monthly")}
               className={`px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 rounded-full transition-all text-xs sm:text-sm ${
-                billingCycle === 'monthly'
-                  ? 'bg-blue-600 text-white'
-                  : 'text-zinc-400 hover:text-white'
+                billingCycle === "monthly"
+                  ? "bg-blue-600 text-white"
+                  : "text-zinc-400 hover:text-white"
               }`}
             >
               Monthly
             </button>
             <button
-              onClick={() => setBillingCycle('yearly')}
+              onClick={() => setBillingCycle("yearly")}
               className={`px-3 sm:px-4 md:px-6 py-1.5 sm:py-2 rounded-full transition-all text-xs sm:text-sm ${
-                billingCycle === 'yearly'
-                  ? 'bg-blue-600 text-white'
-                  : 'text-zinc-400 hover:text-white'
+                billingCycle === "yearly"
+                  ? "bg-blue-600 text-white"
+                  : "text-zinc-400 hover:text-white"
               }`}
             >
               Yearly
@@ -152,16 +164,19 @@ export default function PricingPage() {
         <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16 md:mb-20 max-w-5xl mx-auto">
           {plans.map((plan, idx) => {
             const Icon = plan.icon;
-            const price = billingCycle === 'monthly' ? plan.price.monthly : plan.price.yearly;
-            const displayPrice = billingCycle === 'yearly' ? price / 12 : price;
+            const price =
+              billingCycle === "monthly"
+                ? plan.price.monthly
+                : plan.price.yearly;
+            const displayPrice = billingCycle === "yearly" ? price / 12 : price;
 
             return (
               <div
                 key={plan.name}
                 className={`relative rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 transition-all ${
                   plan.popular
-                    ? 'bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20 border-2 border-blue-500'
-                    : 'bg-zinc-900 border border-zinc-800'
+                    ? "bg-gradient-to-br from-blue-600/20 via-purple-600/20 to-pink-600/20 border-2 border-blue-500"
+                    : "bg-zinc-900 border border-zinc-800"
                 }`}
               >
                 {plan.popular && (
@@ -171,29 +186,39 @@ export default function PricingPage() {
                 )}
 
                 <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
-                  <div className={`p-1.5 sm:p-2 rounded-lg ${plan.popular ? 'bg-blue-600' : 'bg-zinc-800'}`}>
+                  <div
+                    className={`p-1.5 sm:p-2 rounded-lg ${
+                      plan.popular ? "bg-blue-600" : "bg-zinc-800"
+                    }`}
+                  >
                     <Icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
                   </div>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-display">{plan.name}</h3>
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold font-display">
+                    {plan.name}
+                  </h3>
                 </div>
 
-                <p className="text-xs sm:text-sm text-zinc-400 mb-4 sm:mb-6">{plan.description}</p>
+                <p className="text-xs sm:text-sm text-zinc-400 mb-4 sm:mb-6">
+                  {plan.description}
+                </p>
 
                 <div className="mb-4 sm:mb-6">
                   <div className="flex items-baseline gap-1 sm:gap-2">
                     <span className="text-3xl sm:text-4xl md:text-5xl font-bold font-display">
                       ${displayPrice.toFixed(0)}
                     </span>
-                    <span className="text-xs sm:text-sm text-zinc-400">/month</span>
+                    <span className="text-xs sm:text-sm text-zinc-400">
+                      /month
+                    </span>
                   </div>
-                  {billingCycle === 'yearly' && plan.price.yearly > 0 && (
+                  {billingCycle === "yearly" && plan.price.yearly > 0 && (
                     <p className="text-xs sm:text-sm text-zinc-500 mt-1">
                       Billed ${plan.price.yearly}/year
                     </p>
                   )}
                 </div>
 
-                {plan.name === 'Free' ? (
+                {plan.name === "Free" ? (
                   <Button
                     className="w-full mb-4 sm:mb-6 bg-zinc-800 hover:bg-zinc-700 text-xs sm:text-sm"
                     size="lg"
@@ -211,14 +236,17 @@ export default function PricingPage() {
                     onClick={handleUpgrade}
                     disabled={loading}
                   >
-                    {loading ? 'Loading...' : plan.cta}
+                    {loading ? "Loading..." : plan.cta}
                     <ArrowRight className="ml-2 w-3 h-3 sm:w-4 sm:h-4" />
                   </Button>
                 )}
 
                 <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
                   {plan.features.map((feature) => (
-                    <div key={feature} className="flex items-start gap-2 sm:gap-3">
+                    <div
+                      key={feature}
+                      className="flex items-start gap-2 sm:gap-3"
+                    >
                       <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 flex-shrink-0 mt-0.5" />
                       <span className="text-xs sm:text-sm">{feature}</span>
                     </div>
@@ -228,9 +256,14 @@ export default function PricingPage() {
                 {plan.limitations.length > 0 && (
                   <div className="space-y-2 sm:space-y-3 pt-4 sm:pt-6 border-t border-zinc-800">
                     {plan.limitations.map((limitation) => (
-                      <div key={limitation} className="flex items-start gap-2 sm:gap-3">
+                      <div
+                        key={limitation}
+                        className="flex items-start gap-2 sm:gap-3"
+                      >
                         <X className="w-4 h-4 sm:w-5 sm:h-5 text-zinc-600 flex-shrink-0 mt-0.5" />
-                        <span className="text-xs sm:text-sm text-zinc-500">{limitation}</span>
+                        <span className="text-xs sm:text-sm text-zinc-500">
+                          {limitation}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -249,9 +282,8 @@ export default function PricingPage() {
               <img src="/icon.svg" alt="PitchCraft" className="w-6 h-6" />
               <span className="font-bold text-lg">PitchCraft</span>
             </div>
-            <p className="text-sm text-zinc-400">© 2024 PitchCraft. All rights reserved.</p>
             <p className="text-sm text-zinc-400">
-              Built by <a href="https://muhammadtanveerabbas.vercel.app" target="_blank" className="text-blue-400 hover:text-blue-300">Muhammad Tanveer Abbas</a>
+              © 2026 PitchCraft. All rights reserved.
             </p>
           </div>
         </div>

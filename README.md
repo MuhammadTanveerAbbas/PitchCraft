@@ -1,6 +1,6 @@
 # PitchCraft
 
-**AI-Powered Startup Pitch Generator**
+**AI Powered Startup Pitch Generator**
 
 ![Next.js](https://img.shields.io/badge/Next.js_15-000000?style=flat&logo=nextdotjs&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
@@ -14,6 +14,7 @@
 PitchCraft uses AI to generate structured startup pitches in under 60 seconds. Enter your idea, and get a complete pitch with market analysis, features, roadmap, and viability rating.
 
 **Generated Content:**
+
 - ✅ Elevator Pitch
 - 📊 Market Analysis
 - ✨ Key Features (3-5)
@@ -55,6 +56,7 @@ PitchCraft uses AI to generate structured startup pitches in under 60 seconds. E
 ## 🛠️ Setup
 
 ### Prerequisites
+
 - Node.js 18+
 - Groq API key ([Get one here](https://console.groq.com))
 - Supabase account ([Sign up](https://supabase.com))
