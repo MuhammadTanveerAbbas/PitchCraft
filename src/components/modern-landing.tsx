@@ -39,11 +39,13 @@ import {
   Gamepad2,
   Utensils,
   Crown,
+  LayoutDashboard,
 } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { Project } from "@/lib/projects";
 import { UserMenu } from "@/components/user-menu";
+import { useAuth } from "@/contexts/auth-context";
 
 interface ModernLandingProps {
   project: Project;
@@ -51,6 +53,7 @@ interface ModernLandingProps {
 
 export default function ModernLanding({ project }: ModernLandingProps) {
   const [scrollY, setScrollY] = useState(0);
+  const { user } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -81,47 +84,72 @@ export default function ModernLanding({ project }: ModernLandingProps) {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative pt-16 sm:pt-24 pb-10 sm:pb-16 px-3 sm:px-4 overflow-hidden min-h-[90vh] sm:min-h-screen flex items-center">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-cyan-900/20 via-black to-black" />
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-cyan-500/20 rounded-full blur-[100px] sm:blur-[120px] animate-pulse" />
+      <section className="relative pt-16 sm:pt-20 md:pt-28 pb-12 sm:pb-16 md:pb-24 px-2 sm:px-3 md:px-4 overflow-hidden min-h-screen flex items-center">
+        {/* Animated background grid */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(0,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,255,255,0.03)_1px,transparent_1px)] bg-[size:4rem_4rem]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-cyan-900/10 via-transparent to-transparent" />
+        </div>
+
+        {/* Animated orbs - more subtle and refined */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-20 left-1/4 w-72 h-72 bg-cyan-500/15 rounded-full blur-[80px] animate-pulse" />
           <div
-            className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-96 sm:h-96 bg-blue-500/20 rounded-full blur-[100px] sm:blur-[120px] animate-pulse"
-            style={{ animationDelay: "1s" }}
+            className="absolute bottom-32 right-1/3 w-80 h-80 bg-blue-500/10 rounded-full blur-[100px] animate-pulse"
+            style={{ animationDelay: "1.5s" }}
+          />
+          <div
+            className="absolute top-1/2 right-1/4 w-64 h-64 bg-purple-500/8 rounded-full blur-[90px] animate-pulse"
+            style={{ animationDelay: "3s" }}
           />
         </div>
 
-        <div className="container mx-auto max-w-3xl sm:max-w-4xl relative z-10">
-          <div className="text-center space-y-4 sm:space-y-6 md:space-y-8">
-            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 backdrop-blur-sm">
-              <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-cyan-400" />
-              <span className="text-[10px] sm:text-xs md:text-sm font-medium text-cyan-300">
-                AI Powered Pitch Generation
-              </span>
+        <div className="container mx-auto max-w-5xl relative z-10">
+          <div className="text-center space-y-4 sm:space-y-6 md:space-y-8 lg:space-y-10">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 backdrop-blur-sm hover:border-cyan-500/50 transition-colors">
+              <div className="flex items-center gap-1">
+                <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-cyan-400 animate-pulse" />
+                <span className="text-[10px] sm:text-xs md:text-sm font-semibold text-cyan-300">
+                  AI Powered Generation
+                </span>
+              </div>
             </div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.1] px-2">
-              <span className="block mb-1.5 sm:mb-2 md:mb-3">
-                Transform Ideas Into
-              </span>
-              <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Investor Ready Pitches
-              </span>
-            </h1>
+            {/* Main heading */}
+            <div className="space-y-2 sm:space-y-3 md:space-y-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.15] px-1 sm:px-2">
+                <span className="block text-white mb-1 sm:mb-2 md:mb-3">
+                  Your Startup Pitch
+                </span>
+                <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  in 60 Seconds
+                </span>
+              </h1>
+              <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-300 max-w-2xl mx-auto leading-relaxed px-2">
+                Transform your idea into a professional, investor ready pitch.
+                Get market analysis, features, roadmap, and viability rating.
+              </p>
+            </div>
 
-            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-400 max-w-xl sm:max-w-2xl mx-auto leading-relaxed px-2">
-              Generate professional startup pitches with AI in under 60 seconds.
-              Get market analysis, MVP roadmap, and viability rating instantly.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 md:gap-4 justify-center pt-1 sm:pt-2 md:pt-4 px-4">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 md:gap-4 justify-center pt-2 sm:pt-4 md:pt-6">
               <Link href="/dashboard" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold rounded-xl shadow-lg shadow-cyan-500/30"
+                  className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 text-sm sm:text-base md:text-lg font-bold rounded-lg sm:rounded-xl shadow-lg shadow-cyan-500/40 hover:shadow-cyan-500/60 transition-all hover:scale-105"
                 >
-                  <Rocket className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
-                  Start Free
+                  {user ? (
+                    <>
+                      <LayoutDashboard className="mr-1.5 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+                      Dashboard
+                    </>
+                  ) : (
+                    <>
+                      <Rocket className="mr-1.5 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+                      Start Free
+                    </>
+                  )}
                 </Button>
               </Link>
               <Link
@@ -132,12 +160,30 @@ export default function ModernLanding({ project }: ModernLandingProps) {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="w-full sm:w-auto border border-white/20 hover:bg-white/5 px-6 sm:px-8 py-4 sm:py-5 md:py-6 text-sm sm:text-base font-semibold rounded-xl backdrop-blur-sm"
+                  className="w-full sm:w-auto border-2 border-white/20 hover:border-cyan-500/50 hover:bg-white/5 px-6 sm:px-8 md:px-10 py-4 sm:py-5 md:py-6 text-sm sm:text-base md:text-lg font-bold rounded-lg sm:rounded-xl backdrop-blur-sm transition-all"
                 >
-                  <Github className="mr-2 w-4 h-4 sm:w-5 sm:h-5" />
+                  <Github className="mr-1.5 sm:mr-2 w-4 h-4 sm:w-5 sm:h-5" />
                   View Source
                 </Button>
               </Link>
+            </div>
+
+            {/* Trust indicators */}
+            <div className="flex items-center justify-center gap-2 sm:gap-3 md:gap-6 pt-3 sm:pt-6 md:pt-8 text-[10px] sm:text-xs md:text-sm text-gray-400 flex-wrap">
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Check className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400" />
+                <span>No credit card required</span>
+              </div>
+              <div className="w-px h-3 sm:h-4 bg-white/10" />
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-cyan-400" />
+                <span>Under 60 seconds</span>
+              </div>
+              <div className="w-px h-3 sm:h-4 bg-white/10" />
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-blue-400" />
+                <span>Secure & Private</span>
+              </div>
             </div>
           </div>
         </div>
@@ -146,23 +192,23 @@ export default function ModernLanding({ project }: ModernLandingProps) {
       {/* How It Works */}
       <section
         id="how-it-works"
-        className="py-12 sm:py-16 px-4 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent"
+        className="py-8 sm:py-12 md:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-b from-transparent via-cyan-500/5 to-transparent"
       >
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12 sm:mb-16 space-y-4">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
-              <Rocket className="w-4 h-4 text-blue-400" />
-              <span className="text-sm font-medium">How It Works</span>
+          <div className="text-center mb-8 sm:mb-12 md:mb-16 space-y-2 sm:space-y-3 md:space-y-4">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
+              <Rocket className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-blue-400" />
+              <span className="text-xs sm:text-sm font-medium">How It Works</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black">
+            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black">
               3 Simple Steps
             </h2>
-            <p className="text-sm sm:text-base text-gray-400">
+            <p className="text-xs sm:text-sm text-gray-400">
               From idea to pitch in minutes
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 relative">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 relative">
             <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 -translate-y-1/2" />
 
             {[
@@ -186,15 +232,15 @@ export default function ModernLanding({ project }: ModernLandingProps) {
               },
             ].map((step, i) => (
               <div key={i} className="relative">
-                <Card className="bg-black border-white/10 p-6 sm:p-8 relative z-10 hover:border-cyan-500/50 transition">
-                  <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-xl sm:text-2xl font-black mb-4 sm:mb-6 mx-auto">
+                <Card className="bg-black border-white/10 p-4 sm:p-6 md:p-8 relative z-10 hover:border-cyan-500/50 transition">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center text-lg sm:text-xl md:text-2xl font-black mb-3 sm:mb-4 md:mb-6 mx-auto">
                     {step.num}
                   </div>
-                  <step.icon className="w-7 h-7 sm:w-8 sm:h-8 text-cyan-400 mb-3 sm:mb-4 mx-auto" />
-                  <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-center">
+                  <step.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-cyan-400 mb-2 sm:mb-3 md:mb-4 mx-auto" />
+                  <h3 className="text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2 md:mb-3 text-center">
                     {step.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-gray-400 text-center">
+                  <p className="text-xs sm:text-sm md:text-base text-gray-400 text-center">
                     {step.desc}
                   </p>
                 </Card>
@@ -205,9 +251,9 @@ export default function ModernLanding({ project }: ModernLandingProps) {
       </section>
 
       {/* Stats Section */}
-      <section className="py-8 sm:py-12 md:py-16 px-3 sm:px-4 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
+      <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4 lg:gap-6">
             {[
               { num: "60s", label: "Average Generation Time", icon: Clock },
               { num: "24+", label: "Industries Supported", icon: Layers },
@@ -216,13 +262,13 @@ export default function ModernLanding({ project }: ModernLandingProps) {
             ].map((stat, i) => (
               <Card
                 key={i}
-                className="bg-gradient-to-br from-white/5 to-white/[0.02] border-white/10 p-3 sm:p-4 md:p-6 text-center hover:border-purple-500/50 transition"
+                className="bg-gradient-to-br from-white/5 to-white/[0.02] border-white/10 p-2 sm:p-3 md:p-4 lg:p-6 text-center hover:border-purple-500/50 transition"
               >
-                <stat.icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-purple-400 mx-auto mb-2 sm:mb-3" />
-                <div className="text-2xl sm:text-3xl md:text-4xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-1 sm:mb-2">
+                <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-purple-400 mx-auto mb-1 sm:mb-2 md:mb-3" />
+                <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-0.5 sm:mb-1 md:mb-2">
                   {stat.num}
                 </div>
-                <p className="text-[10px] sm:text-xs md:text-sm text-gray-400">
+                <p className="text-[9px] sm:text-xs md:text-sm text-gray-400">
                   {stat.label}
                 </p>
               </Card>
@@ -232,17 +278,17 @@ export default function ModernLanding({ project }: ModernLandingProps) {
       </section>
 
       {/* What You Get Section */}
-      <section className="py-8 sm:py-12 md:py-16 px-4">
+      <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-2 sm:px-3 md:px-4">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-6 sm:mb-8 md:mb-12">
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3">
+          <div className="text-center mb-4 sm:mb-6 md:mb-8 lg:mb-12">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-1 sm:mb-2 md:mb-3">
               Complete Pitch Package
             </h2>
             <p className="text-xs sm:text-sm text-gray-400">
               Everything you need in one place
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
             {[
               { icon: Zap, title: "Elevator Pitch" },
               { icon: Users, title: "Market Analysis" },
@@ -255,10 +301,10 @@ export default function ModernLanding({ project }: ModernLandingProps) {
             ].map((item, i) => (
               <div
                 key={i}
-                className="bg-white/5 border border-white/10 rounded-lg p-3 sm:p-4 text-center"
+                className="bg-white/5 border border-white/10 rounded-lg p-2 sm:p-3 md:p-4 text-center"
               >
-                <item.icon className="w-6 h-6 sm:w-8 sm:h-8 text-cyan-400 mx-auto mb-2 sm:mb-3" />
-                <h3 className="text-xs sm:text-sm font-semibold">
+                <item.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-cyan-400 mx-auto mb-1 sm:mb-2 md:mb-3" />
+                <h3 className="text-[10px] sm:text-xs md:text-sm font-semibold">
                   {item.title}
                 </h3>
               </div>
@@ -268,14 +314,14 @@ export default function ModernLanding({ project }: ModernLandingProps) {
       </section>
 
       {/* Comparison Section */}
-      <section className="py-8 sm:py-12 md:py-16 px-3 sm:px-4 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent">
+      <section className="py-6 sm:py-8 md:py-12 lg:py-16 px-2 sm:px-3 md:px-4 bg-gradient-to-b from-transparent via-blue-500/5 to-transparent">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-8 sm:mb-10 md:mb-12 space-y-3 sm:space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
-              <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-blue-400" />
+          <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 space-y-2 sm:space-y-3 md:space-y-4">
+            <div className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1 sm:py-1.5 md:py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
+              <TrendingUp className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-blue-400" />
               <span className="text-xs sm:text-sm font-medium">Comparison</span>
             </div>
-            <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black px-2">
+            <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-black px-1 sm:px-2">
               PitchCraft vs Manual Writing
             </h2>
             <p className="text-xs sm:text-sm text-gray-400">
@@ -283,114 +329,102 @@ export default function ModernLanding({ project }: ModernLandingProps) {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6 max-w-md md:max-w-none mx-auto">
-            <Card className="bg-gradient-to-br from-red-500/10 to-orange-500/10 border-red-500/20 p-4 sm:p-5 md:p-6 hover:border-red-500/40 transition-all">
-              <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
-                <div className="p-2 sm:p-2.5 md:p-3 bg-red-500/20 rounded-lg sm:rounded-xl">
-                  <Clock className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-red-400" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 max-w-md md:max-w-none mx-auto">
+            <Card className="bg-gradient-to-br from-red-500/10 to-orange-500/10 border-red-500/20 p-3 sm:p-4 md:p-5 lg:p-6 hover:border-red-500/40 transition-all">
+              <div className="flex items-center justify-center gap-2 sm:gap-2.5 md:gap-3 mb-3 sm:mb-4 md:mb-5 lg:mb-6">
+                <div className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 bg-red-500/20 rounded-lg sm:rounded-lg md:rounded-lg lg:rounded-xl">
+                  <Clock className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-red-400" />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold">
+                <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold">
                   Time Saved
                 </h3>
               </div>
-              <div className="space-y-2 sm:space-y-2.5 md:space-y-3 text-xs sm:text-sm">
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">
-                    60 seconds vs 5-10 hours
-                  </span>
+              <div className="space-y-1.5 sm:space-y-2 md:space-y-2.5 text-xs sm:text-xs md:text-sm">
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Zap className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
+                  <span className="text-gray-300">60 seconds vs 5-10 hours</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Rocket className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">
-                    Instant generation ready
-                  </span>
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Rocket className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
+                  <span className="text-gray-300">Instant generation ready</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Target className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
                   <span className="text-gray-300">No research time needed</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Brain className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Brain className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
                   <span className="text-gray-300">AI handles complexity</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">
-                    Multiple iterations fast
-                  </span>
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
+                  <span className="text-gray-300">Multiple iterations fast</span>
                 </div>
               </div>
             </Card>
 
-            <Card className="bg-gradient-to-br from-yellow-500/10 to-amber-500/10 border-yellow-500/20 p-4 sm:p-5 md:p-6 hover:border-yellow-500/40 transition-all">
-              <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
-                <div className="p-2 sm:p-2.5 md:p-3 bg-yellow-500/20 rounded-lg sm:rounded-xl">
-                  <Award className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-yellow-400" />
+            <Card className="bg-gradient-to-br from-yellow-500/10 to-amber-500/10 border-yellow-500/20 p-3 sm:p-4 md:p-5 lg:p-6 hover:border-yellow-500/40 transition-all">
+              <div className="flex items-center justify-center gap-2 sm:gap-2.5 md:gap-3 mb-3 sm:mb-4 md:mb-5 lg:mb-6">
+                <div className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 bg-yellow-500/20 rounded-lg sm:rounded-lg md:rounded-lg lg:rounded-xl">
+                  <Award className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-yellow-400" />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold">
+                <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold">
                   Quality
                 </h3>
               </div>
-              <div className="space-y-2 sm:space-y-2.5 md:space-y-3 text-xs sm:text-sm">
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Brain className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
+              <div className="space-y-1.5 sm:space-y-2 md:space-y-2.5 text-xs sm:text-xs md:text-sm">
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Brain className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
                   <span className="text-gray-300">AI powered insights</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <BarChart3 className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">Data-driven analysis</span>
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <BarChart3 className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
+                  <span className="text-gray-300">Data driven analysis</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Shield className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Shield className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
                   <span className="text-gray-300">Professional structure</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">Investor-ready format</span>
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Users className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
+                  <span className="text-gray-300">investor ready format</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
                   <span className="text-gray-300">Consistent excellence</span>
                 </div>
               </div>
             </Card>
 
-            <Card className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border-cyan-500/20 p-4 sm:p-5 md:p-6 hover:border-cyan-500/40 transition-all">
-              <div className="flex items-center justify-center gap-2 sm:gap-3 mb-4 sm:mb-5 md:mb-6">
-                <div className="p-2 sm:p-2.5 md:p-3 bg-cyan-500/20 rounded-lg sm:rounded-xl">
-                  <FileText className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-cyan-400" />
+            <Card className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border-cyan-500/20 p-3 sm:p-4 md:p-5 lg:p-6 hover:border-cyan-500/40 transition-all">
+              <div className="flex items-center justify-center gap-2 sm:gap-2.5 md:gap-3 mb-3 sm:mb-4 md:mb-5 lg:mb-6">
+                <div className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 bg-cyan-500/20 rounded-lg sm:rounded-lg md:rounded-lg lg:rounded-xl">
+                  <FileText className="w-5 h-5 sm:w-5.5 sm:h-5.5 md:w-6 md:h-6 lg:w-7 lg:h-7 xl:w-8 xl:h-8 text-cyan-400" />
                 </div>
-                <h3 className="text-base sm:text-lg md:text-xl font-bold">
+                <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold">
                   Completeness
                 </h3>
               </div>
-              <div className="space-y-2 sm:space-y-2.5 md:space-y-3 text-xs sm:text-sm">
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">
-                    8 comprehensive sections
-                  </span>
+              <div className="space-y-1.5 sm:space-y-2 md:space-y-2.5 text-xs sm:text-xs md:text-sm">
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Layers className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
+                  <span className="text-gray-300">8 comprehensive sections</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">
-                    Viability rating included
-                  </span>
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Award className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
+                  <span className="text-gray-300">Viability rating included</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Download className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Download className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
                   <span className="text-gray-300">Export to markdown</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Rocket className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Rocket className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
                   <span className="text-gray-300">MVP roadmap ready</span>
                 </div>
-                <div className="flex items-center justify-center gap-2 p-1.5 sm:p-2 bg-black/20 rounded-lg">
-                  <Target className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">
-                    Market analysis built-in
-                  </span>
+                <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-1 sm:p-1.5 md:p-2 bg-black/20 rounded-lg">
+                  <Target className="w-3 h-3 sm:w-3.5 sm:h-3.5 md:w-4 md:h-4 text-green-400 flex-shrink-0" />
+                  <span className="text-gray-300">Market analysis built in</span>
                 </div>
               </div>
             </Card>
@@ -634,10 +668,9 @@ export default function ModernLanding({ project }: ModernLandingProps) {
                   <Check className="w-4 h-4 text-green-400" />
                   <span>Free plan available</span>
                 </div>
-                <span>•</span>
                 <div className="flex items-center gap-1.5">
                   <Shield className="w-4 h-4 text-green-400" />
-                  <span>No credit card required</span>
+                  <span>Full Secure & Private</span>
                 </div>
               </div>
             </div>
@@ -715,7 +748,7 @@ export default function ModernLanding({ project }: ModernLandingProps) {
                 </span>
               </div>
               <p className="text-gray-400 text-xs sm:text-sm leading-relaxed max-w-md">
-                Transform your startup ideas into investor-ready pitches with
+                Transform your startup ideas into investor ready pitches with
                 AI. Get professional market analysis, MVP roadmaps, and pitch
                 deck outlines in seconds.
               </p>
@@ -811,27 +844,9 @@ export default function ModernLanding({ project }: ModernLandingProps) {
           </div>
 
           <div className="border-t border-white/10 pt-4 sm:pt-5 md:pt-6">
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
-              <div className="text-\[10px\] sm:text-xs md:text-sm text-gray-400 text-center sm:text-left">
+            <div className="flex flex-col sm:flex-row justify-center items-center gap-3">
+              <div className="text-[10px] sm:text-xs md:text-sm text-gray-400 text-center">
                 <span>© 2026 PitchCraft. All rights reserved.</span>
-                <span className="hidden sm:inline mx-2">•</span>
-                <span className="block sm:inline mt-1 sm:mt-0">
-                  Built with ❤️ by{" "}
-                  <a
-                    href="https://muhammadtanveerabbas.vercel.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-cyan-400 hover:text-cyan-300 transition font-semibold"
-                  >
-                    Muhammad Tanveer Abbas
-                  </a>
-                </span>
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-full bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20">
-                <Zap className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-cyan-400" />
-                <span className="text-\[10px\] sm:text-xs font-medium text-cyan-300">
-                  Powered by AI
-                </span>
               </div>
             </div>
           </div>

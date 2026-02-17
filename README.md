@@ -116,7 +116,7 @@ npm start
 - Not a replacement for market research
 - Not legal or financial advice
 - Not a guarantee of funding
-- Not industry-specific expertise
+- Not industry specific expertise
 
 PitchCraft accelerates your pitch creation process but doesn't replace the hard work of building a real business.
 

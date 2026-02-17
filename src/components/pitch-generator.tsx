@@ -303,26 +303,27 @@ export default function PitchGenerator() {
 
   return (
     <main className="min-h-screen text-white">
-      <div className="container mx-auto max-w-7xl p-4 md:p-8">
+      <div className="container mx-auto max-w-7xl p-3 sm:p-4 md:p-8">
         {pitchData && (
-          <div className="fixed top-20 right-4 z-40 animate-fade-in">
+          <div className="fixed top-16 sm:top-20 right-2 sm:right-4 z-40 animate-fade-in">
             <Button
               variant="outline"
               size="sm"
               onClick={handleNewPitch}
-              className="border-white/20 text-white hover:bg-white/10 bg-black/80 backdrop-blur-md shadow-lg hover:shadow-cyan-500/20 transition-all"
+              className="border-white/20 text-white hover:bg-white/10 bg-black/80 backdrop-blur-md shadow-lg hover:shadow-cyan-500/20 transition-all text-xs sm:text-sm px-2 sm:px-3 py-1.5 sm:py-2"
               aria-label="Generate a new pitch"
             >
-              <Rocket className="h-4 w-4 mr-2" />
-              New Pitch
+              <Rocket className="h-3.5 w-3.5 sm:h-4 sm:w-4 mr-1 sm:mr-2" />
+              <span className="hidden sm:inline">New Pitch</span>
+              <span className="sm:hidden">New</span>
             </Button>
           </div>
         )}
         {!pitchData && (
           <>
-            <div className="max-w-5xl mx-auto space-y-6">
+            <div className="max-w-5xl mx-auto space-y-4 sm:space-y-6">
               <UsageBanner />
-              <div className="bg-gradient-to-br from-white/[0.07] to-white/[0.03] border border-white/20 rounded-3xl p-6 md:p-10 backdrop-blur-xl shadow-2xl hover:border-cyan-500/30 transition-all">
+              <div className="bg-gradient-to-br from-white/[0.07] to-white/[0.03] border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-10 backdrop-blur-xl shadow-2xl hover:border-cyan-500/30 transition-all">
                 <PitchForm
                   onGenerate={handleGenerate}
                   onSurpriseMe={handleSurpriseMe}
