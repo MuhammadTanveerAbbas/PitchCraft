@@ -43,7 +43,7 @@ export function DashboardLayout({ children, activeSection, onSectionChange }: Da
 
   const navItems = [
     { id: 'overview', label: 'Overview', icon: LayoutDashboard },
-    { id: 'generate', label: 'Generate', icon: Zap },
+    { id: 'generate', label: 'Pitch', icon: Zap },
     { id: 'saved', label: 'Saved', icon: Star },
   ];
 

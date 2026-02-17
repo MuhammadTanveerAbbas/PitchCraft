@@ -118,7 +118,7 @@ export default function ModernLanding({ project }: ModernLandingProps) {
 
             {/* Main heading */}
             <div className="space-y-2 sm:space-y-3 md:space-y-4">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.15] px-1 sm:px-2">
+              <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black tracking-tight leading-[1.15] px-1 sm:px-2">
                 <span className="block text-white mb-1 sm:mb-2 md:mb-3">
                   Your Startup Pitch
                 </span>
